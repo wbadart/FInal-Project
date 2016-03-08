@@ -1,0 +1,18 @@
+Cat Badart
+Dan Wilborn
+Will Badart
+Mara Staines
+
+3D Maze Project Rubric
+
+4 pts: Tutorial 1 - Opening a Window
+4 pts: Tutorial 2 - The First Triangle
+4 pts: Tutorial 3 - Matrices
+4 pts: Tutorial 4 - A Colored Cube
+4 pts: Tutorial 5 - A Textured Cube
+4 pts: Tutorial 6 - Keyboard and Mouse
+4 pts: Tutorial 7 - Model Loading
+4 pts: Tutorial 8 - Basic Shading 
+8 pts: Individual Sample/Showcase
+
+Tutorials from: www.opengl-tutorial.org
