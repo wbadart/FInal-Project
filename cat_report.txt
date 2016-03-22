@@ -1,0 +1,27 @@
+Cat Badart
+
+Lab 8 Report
+------------
+
+Doing all 8 of the beginning tutorials was a little over ambitious, by the time I logged 7 hours of working on the project, I had only gotten through the first two.  The first tutorial was the most brutal, it took a very long time to figure out how to install everything and get all the right libraries and then compile all the tutorials.  However, once everything was set up it made the next tutorials a little easier.
+
+My next challenge was getting the code I wrote on my own to compile (which it still does not).  I learned that you have to include about a dozen flags for all the libraries when you compile.  Even after all of this, I still kept getting a fatal error saying that "glfw3.h does not exist" even though I made certain that I downloaded libGLFW3.  So I have not been able to compile any of my own code yet, but I have been able to run all of the tutorials and get a feel for what is possible in openGL.  
+
+Time Log:
+3/1	.5	Lab 7: found tutorials, created github repo and made rubric
+3/9	1	Tried installing OpenGL on my labtop using Windows, which was not working out so I installed Fedora on my laptop
+3/14	2	Installed needed tools and libraries, spent a while trying to get tutorials to compile.  Each time I tried compiling it would say that I still needed such and such library so I just kept installing each library it told me to until everything finally compiled.
+3/15	1	Lab 8: spent time looking at each of the 8 tutorials and exploring what all is possible in OpenGL
+3/16	2	Tutorial 1: finally got a window to open!
+3/19	2	Tutorial 2, tried writing my own code, but couldn't get it to compile.
+
+Total: 8.5
+
+What I learned:
+There are a ton of different libraries that you need, at first I had no idea what any of them did but now I am starting to get a handle on them.  Here are the most important/useful ones and what they are used for:
+	- GLEW: provides methods for checking OpenGL extensions and functionality.  You use it to check compatability and see if extensions are available on your platform.
+	- GLFW3: library for creating windows, receiving input and events.  Example: open a window and wait for user to hit ESC key, then close the window.  Most of those methods would be found in libGLFW3.
+	- GLM: Mathematics library based on 3D OpenGL Shading Language
+	- GLUT: GL Utility Toolkit implements windowing API
+
+A lot of my struggle at the beginning was getting everything set up and running something for the first time.  I now know more about what each library is used for.  I am also way more confident about searching for packages on my system and installing them.  That was another thing that was tricky: the tutorials listed the names of libraries by what they are called in Ubuntu, but I have Fedora, which calls them slightly different names.  So I had to search for something that was close to the name the tutorial gave and then figure out which package/library was equivalent in Fedora.  I feel like a lot of the difficulties that arise from using OpenGL come at the very beginning, it is a lot harder to do simple tasks, but once we master those, it won't get too much more difficult as we do more complex things.  
