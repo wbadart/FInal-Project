@@ -1,0 +1,52 @@
+In file included from /usr/include/glm/gtc/matrix_transform.hpp:292:0,
+                 from tutorial09.cpp:15:
+/usr/include/glm/gtc/matrix_transform.inl: In function ‘glm::detail::tmat4x4<T, P> glm::rotate(const glm::detail::tmat4x4<T, P>&, const T&, const glm::detail::tvec3<T, P>&)’:
+/usr/include/glm/gtc/matrix_transform.inl:79:165: note: #pragma message: GLM: rotate function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+ #  pragma message("GLM: rotate function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.")
+                                                                                                                                                                     ^
+/usr/include/glm/gtc/matrix_transform.inl: In function ‘glm::detail::tmat4x4<T, P> glm::rotate_slow(const glm::detail::tmat4x4<T, P>&, const T&, const glm::detail::tvec3<T, P>&)’:
+/usr/include/glm/gtc/matrix_transform.inl:120:170: note: #pragma message: GLM: rotate_slow function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+ #  pragma message("GLM: rotate_slow function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.")
+                                                                                                                                                                          ^
+/usr/include/glm/gtc/matrix_transform.inl: In function ‘glm::detail::tmat4x4<T, (glm::precision)0u> glm::perspective(const valType&, const valType&, const valType&, const valType&)’:
+/usr/include/glm/gtc/matrix_transform.inl:253:170: note: #pragma message: GLM: perspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+ #  pragma message("GLM: perspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.")
+                                                                                                                                                                          ^
+/usr/include/glm/gtc/matrix_transform.inl: In function ‘glm::detail::tmat4x4<T, (glm::precision)0u> glm::perspectiveFov(const valType&, const valType&, const valType&, const valType&, const valType&)’:
+/usr/include/glm/gtc/matrix_transform.inl:285:173: note: #pragma message: GLM: perspectiveFov function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+ #  pragma message("GLM: perspectiveFov function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.")
+                                                                                                                                                                             ^
+/usr/include/glm/gtc/matrix_transform.inl: In function ‘glm::detail::tmat4x4<T, (glm::precision)0u> glm::infinitePerspective(T, T, T)’:
+/usr/include/glm/gtc/matrix_transform.inl:311:178: note: #pragma message: GLM: infinitePerspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+ #  pragma message("GLM: infinitePerspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.")
+                                                                                                                                                                                  ^
+/usr/include/glm/gtc/matrix_transform.inl: In function ‘glm::detail::tmat4x4<T, (glm::precision)0u> glm::tweakedInfinitePerspective(T, T, T)’:
+/usr/include/glm/gtc/matrix_transform.inl:339:185: note: #pragma message: GLM: tweakedInfinitePerspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+ #  pragma message("GLM: tweakedInfinitePerspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.")
+                                                                                                                                                                                         ^
+In file included from /usr/include/glm/gtc/matrix_transform.hpp:292:0,
+                 from controls.cpp:7:
+/usr/include/glm/gtc/matrix_transform.inl: In function ‘glm::detail::tmat4x4<T, P> glm::rotate(const glm::detail::tmat4x4<T, P>&, const T&, const glm::detail::tvec3<T, P>&)’:
+/usr/include/glm/gtc/matrix_transform.inl:79:165: note: #pragma message: GLM: rotate function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+ #  pragma message("GLM: rotate function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.")
+                                                                                                                                                                     ^
+/usr/include/glm/gtc/matrix_transform.inl: In function ‘glm::detail::tmat4x4<T, P> glm::rotate_slow(const glm::detail::tmat4x4<T, P>&, const T&, const glm::detail::tvec3<T, P>&)’:
+/usr/include/glm/gtc/matrix_transform.inl:120:170: note: #pragma message: GLM: rotate_slow function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+ #  pragma message("GLM: rotate_slow function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.")
+                                                                                                                                                                          ^
+/usr/include/glm/gtc/matrix_transform.inl: In function ‘glm::detail::tmat4x4<T, (glm::precision)0u> glm::perspective(const valType&, const valType&, const valType&, const valType&)’:
+/usr/include/glm/gtc/matrix_transform.inl:253:170: note: #pragma message: GLM: perspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+ #  pragma message("GLM: perspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.")
+                                                                                                                                                                          ^
+/usr/include/glm/gtc/matrix_transform.inl: In function ‘glm::detail::tmat4x4<T, (glm::precision)0u> glm::perspectiveFov(const valType&, const valType&, const valType&, const valType&, const valType&)’:
+/usr/include/glm/gtc/matrix_transform.inl:285:173: note: #pragma message: GLM: perspectiveFov function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+ #  pragma message("GLM: perspectiveFov function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.")
+                                                                                                                                                                             ^
+/usr/include/glm/gtc/matrix_transform.inl: In function ‘glm::detail::tmat4x4<T, (glm::precision)0u> glm::infinitePerspective(T, T, T)’:
+/usr/include/glm/gtc/matrix_transform.inl:311:178: note: #pragma message: GLM: infinitePerspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+ #  pragma message("GLM: infinitePerspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.")
+                                                                                                                                                                                  ^
+/usr/include/glm/gtc/matrix_transform.inl: In function ‘glm::detail::tmat4x4<T, (glm::precision)0u> glm::tweakedInfinitePerspective(T, T, T)’:
+/usr/include/glm/gtc/matrix_transform.inl:339:185: note: #pragma message: GLM: tweakedInfinitePerspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+ #  pragma message("GLM: tweakedInfinitePerspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.")
+                                                                                                                                                                                         ^
