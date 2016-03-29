@@ -28,3 +28,6 @@
 
 # Log files
 *.log
+
+# Panda test makefile: will be slightly different for everyone
+panda_test_files/Makefile
