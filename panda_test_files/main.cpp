@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
 
     // Check if window opened
     if(window != (WindowFramework *) NULL){
-        std::cout << "Successfully openend window\n";
+        std::cout << "Successfully opened window\n";
 
         // Load environment
         NodePath scene = window->load_model(framework.get_models(), "environment");
@@ -53,16 +53,16 @@ int main(int argc, char *argv[]){
         scene.set_pos(-8, 42, 0);
 
         // Load model
-        NodePath pandaActor = window->load_model(framework.get_models(), "panda-model");
-        pandaActor.set_scale(0.005);
+        NodePath pandaActor = window->load_model(framework.get_models(), "./dog.egg");
+        pandaActor.set_scale(0.5);
         pandaActor.reparent_to(window->get_render());
 
         // Load animation
-        window->load_model(pandaActor, "panda-walk4");
+        window->load_model(pandaActor, "dog-Anim0.egg");
         window->loop_animations(0);
 
         // Create lerp intervals needed to walk back and forth
-        PT(CLerpNodePathInterval) pandaPosInterval1, pandaPosInterval2,
+        /*PT(CLerpNodePathInterval) pandaPosInterval1, pandaPosInterval2,
             pandaHprInterval1, pandaHprInterval2;
 
         pandaPosInterval1 = new CLerpNodePathInterval("pandaPosInterval1",
@@ -93,7 +93,7 @@ int main(int argc, char *argv[]){
         pandaPace->add_c_interval(pandaHprInterval1, 0, CMetaInterval::RS_previous_end);
         pandaPace->add_c_interval(pandaHprInterval2, 0, CMetaInterval::RS_previous_end);
 
-        pandaPace->loop();
+        pandaPace->loop(); */
 
 
         // Start tasks and execute loop
