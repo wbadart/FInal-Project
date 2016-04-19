@@ -32,9 +32,7 @@ AsyncTask::DoneStatus spinCameraTask(GenericAsyncTask *task, void *data){
 int main(int argc, char *argv[]){
     // Open window
 
-    Game game;
-    game.framework.open_framework(argc, argv);
-    game.framework.set_window_title("My window");
+    Game game(argc, argv);
     WindowFramework *window = game.framework.open_window();
 
     camera = window->get_camera_group();
