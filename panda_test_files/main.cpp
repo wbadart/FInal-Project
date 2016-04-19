@@ -34,10 +34,11 @@ int main(int argc, char *argv[]){
 
     Game game(argc, argv);
 
-    camera = game.window->get_camera_group();
 
     // Check if window opened
-    if(game.window != (WindowFramework *) NULL){
+    if(game.open_window()){
+
+        camera = game.window->get_camera_group();
         std::cout << "Successfully opened window\n";
 
         // Load environment
