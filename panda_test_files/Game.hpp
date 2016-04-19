@@ -19,6 +19,7 @@ class Game{
         Game(int argc_in, char *argv_in[], std::string window_name_in);
     // private:
         PandaFramework framework;
+        WindowFramework *window;
     private:
         std::string window_name;
 };

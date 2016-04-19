@@ -33,32 +33,27 @@ int main(int argc, char *argv[]){
     // Open window
 
     Game game(argc, argv);
-    WindowFramework *window = game.framework.open_window();
 
-    camera = window->get_camera_group();
-
-    // Enable keyboard and camera movement
-    window->enable_keyboard();
-    window->setup_trackball();
+    camera = game.window->get_camera_group();
 
     // Check if window opened
-    if(window != (WindowFramework *) NULL){
+    if(game.window != (WindowFramework *) NULL){
         std::cout << "Successfully opened window\n";
 
         // Load environment
-        NodePath scene = window->load_model(game.framework.get_models(), "environment");
-        scene.reparent_to(window->get_render());
+        NodePath scene = game.window->load_model(game.framework.get_models(), "environment");
+        scene.reparent_to(game.window->get_render());
         scene.set_scale(0.25f, 0.25f, 0.25f);
         scene.set_pos(-8, 42, 0);
 
         // Load model
-        NodePath pandaActor = window->load_model(game.framework.get_models(), "./dog.egg");
+        NodePath pandaActor = game.window->load_model(game.framework.get_models(), "./dog.egg");
         pandaActor.set_scale(0.5);
-        pandaActor.reparent_to(window->get_render());
+        pandaActor.reparent_to(game.window->get_render());
 
         // Load animation
-        window->load_model(pandaActor, "dog-Anim0.egg");
-        window->loop_animations(0);
+        game.window->load_model(pandaActor, "dog-Anim0.egg");
+        game.window->loop_animations(0);
 
         // Create lerp intervals needed to walk back and forth
         /*PT(CLerpNodePathInterval) pandaPosInterval1, pandaPosInterval2,
