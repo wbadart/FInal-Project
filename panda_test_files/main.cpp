@@ -42,7 +42,8 @@ int main(int argc, char *argv[]){
         std::cout << "Successfully opened window\n";
 
         // Load environment
-        NodePath scene = game.window->load_model(game.framework.get_models(), "environment");
+        //NodePath scene = game.window->load_model(game.framework.get_models(), "environment");
+        NodePath scene = game.load_model("environment");
         scene.reparent_to(game.window->get_render());
         scene.set_scale(0.25f, 0.25f, 0.25f);
         scene.set_pos(-8, 42, 0);

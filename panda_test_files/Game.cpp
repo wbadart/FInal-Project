@@ -12,7 +12,7 @@ Game::Game(int argc_in, char *argv_in[]):
         Game(argc_in, argv_in, "Default window name"){};
 
 Game::Game(int argc_in, char *argv_in[], std::string window_name_in):
-        framework(), window_name(window_name_in){
+        framework(), window_is_open(false), window_name(window_name_in){
 
     // Init framework and open window
     framework.open_framework(argc_in, argv_in);
@@ -33,9 +33,17 @@ bool Game::open_window(void){
     window->enable_keyboard();
     window->setup_trackball();
     
+    window_is_open = true;
     return true;;
 }
 
-void Game::load_environment(void){
+NodePath Game::load_model(char *model_name){
+    if(window_is_open)
+        return window->load_model(framework.get_models(), model_name);
+    else
+        return NodePath();
+}
 
+NodePath Game::load_model(std::string model_name){
+    return load_model(model_name.c_str());
 }

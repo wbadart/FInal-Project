@@ -19,11 +19,13 @@ class Game{
         Game(int argc_in, char *argv_in[]);
         Game(int argc_in, char *argv_in[], std::string window_name_in);
         bool open_window(void);
-        void load_environment(void);
+        NodePath load_model(char *model_name);
+        NodePath load_model(std::string model_name);
     // private:
         PandaFramework framework;
         WindowFramework *window;
     private:
+        bool window_is_open;
         std::string window_name;
 };
 
