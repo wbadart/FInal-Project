@@ -1,7 +1,4 @@
-#Change absolute paths to your paths that lead these folders
-
-PANDA_LIB="$(HOME)/Documents/2015-16/OpenGL/panda3d-1.9.2/built/lib"
-PANDA_CPATH="$(HOME)/Documents/2015-16/OpenGL/panda3d-1.9.2/built/include"
+# Add PANDA_LIB and PANDA_CPATH environment variables
 
 all: main.o
 	g++ $< -o a.out -fPIC -L$(PANDA_LIB) -lp3framework -lpanda -lpandafx -lpandaexpress -lp3dtoolconfig -lp3dtool -lp3pystub -lp3direct -lpthread
