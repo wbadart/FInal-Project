@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include <pandaFramework.h>
+#include "Game.hpp"
 #include <pandaSystem.h>
 #include <genericAsyncTask.h>
 #include <asyncTaskManager.h>
@@ -31,10 +31,11 @@ AsyncTask::DoneStatus spinCameraTask(GenericAsyncTask *task, void *data){
 
 int main(int argc, char *argv[]){
     // Open window
-    PandaFramework framework;
-    framework.open_framework(argc, argv);
-    framework.set_window_title("My window");
-    WindowFramework *window = framework.open_window();
+
+    Game game;
+    game.framework.open_framework(argc, argv);
+    game.framework.set_window_title("My window");
+    WindowFramework *window = game.framework.open_window();
 
     camera = window->get_camera_group();
 
@@ -47,13 +48,13 @@ int main(int argc, char *argv[]){
         std::cout << "Successfully opened window\n";
 
         // Load environment
-        NodePath scene = window->load_model(framework.get_models(), "environment");
+        NodePath scene = window->load_model(game.framework.get_models(), "environment");
         scene.reparent_to(window->get_render());
         scene.set_scale(0.25f, 0.25f, 0.25f);
         scene.set_pos(-8, 42, 0);
 
         // Load model
-        NodePath pandaActor = window->load_model(framework.get_models(), "./dog.egg");
+        NodePath pandaActor = window->load_model(game.framework.get_models(), "./dog.egg");
         pandaActor.set_scale(0.5);
         pandaActor.reparent_to(window->get_render());
 
@@ -99,7 +100,7 @@ int main(int argc, char *argv[]){
         // Start tasks and execute loop
         taskMgr->add(new GenericAsyncTask("Spins the camera", &spinCameraTask, (void*) NULL));
 
-        framework.main_loop();
+        game.framework.main_loop();
 
     }else{
         std::cerr << "Could not load window\n";
@@ -107,6 +108,6 @@ int main(int argc, char *argv[]){
     }
 
     //Close down
-    framework.close_framework();
+    game.framework.close_framework();
     return 0;
 }

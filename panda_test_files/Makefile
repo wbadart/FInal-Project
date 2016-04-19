@@ -1,7 +1,7 @@
 # Add PANDA_LIB and PANDA_CPATH environment variables
 
-all: main.o
-	g++ $< -o a.out -fPIC -L$(PANDA_LIB) -lp3framework -lpanda -lpandafx -lpandaexpress -lp3dtoolconfig -lp3dtool -lp3pystub -lp3direct -lpthread
+all: main.o Game.o
+	g++ $^ -o a.out -fPIC -L$(PANDA_LIB) -lp3framework -lpanda -lpandafx -lpandaexpress -lp3dtoolconfig -lp3dtool -lp3pystub -lp3direct -lpthread
 
 %.o: %.cpp
 	g++ -c $< -o $@ -fPIC -O2 -I$(PANDA_CPATH)
