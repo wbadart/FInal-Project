@@ -42,14 +42,14 @@ int main(int argc, char *argv[]){
         std::cout << "Successfully opened window\n";
 
         // Load environment
-        //NodePath scene = game.window->load_model(game.framework.get_models(), "environment");
-        NodePath scene = game.load_model("environment");
+        // NodePath scene = game.load_model("environment");
+        NodePath scene = game.load_model("./Maze.egg");
         scene.reparent_to(game.window->get_render());
-        scene.set_scale(0.25f, 0.25f, 0.25f);
-        scene.set_pos(-8, 42, 0);
+        scene.set_scale(10.25f, 10.25f, 10.25f);
+        scene.set_pos(8, 22, 0);
 
         // Load model
-        NodePath pandaActor = game.window->load_model(game.framework.get_models(), "./dog.egg");
+        NodePath pandaActor = game.load_model("./dog.egg");
         pandaActor.set_scale(0.5);
         pandaActor.reparent_to(game.window->get_render());
 
@@ -93,7 +93,7 @@ int main(int argc, char *argv[]){
 
 
         // Start tasks and execute loop
-        taskMgr->add(new GenericAsyncTask("Spins the camera", &spinCameraTask, (void*) NULL));
+        // taskMgr->add(new GenericAsyncTask("Spins the camera", &spinCameraTask, (void*) NULL));
 
         game.framework.main_loop();
 
