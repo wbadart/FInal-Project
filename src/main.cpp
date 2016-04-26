@@ -42,7 +42,7 @@ int main(int argc, char *argv[]){
         std::cout << "Successfully opened window\n";
 
         // Load environment
-        NodePath maze = game.load_model("models/MazeTex.egg");
+        NodePath maze = game.load_model("models/Maze.egg");
         maze.reparent_to(game.window->get_render());
         maze.set_scale(10.25f, 10.25f, 10.25f);
         maze.set_pos(8, 22, 0);
