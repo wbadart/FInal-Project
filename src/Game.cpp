@@ -55,6 +55,10 @@ void Game::init_models(void){
     pc.set_scale(0.5);
     pc.reparent_to(window->get_render());
     window->load_model(pc, "models/dog-Anim0.egg");
+
+    // Load animation
+    window->loop_animations(0);
+
 }
 
 void Game::init_keybindings(void){

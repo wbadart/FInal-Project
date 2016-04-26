@@ -30,9 +30,6 @@ int main(int argc, char *argv[]){
         // Load models
         game.init_models();
 
-        // Load animation
-        game.window->loop_animations(0);
-
         // Setup controls
         game.init_keybindings();
 
