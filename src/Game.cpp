@@ -52,6 +52,25 @@ void Game::setpc(NodePath pc_in){
     pc = pc_in;
 }
 
-void Game::move_model_forward(const Event *e, void *dataptr){
-    std:: cout << "YOU PRESSED W!!!\n";
+void Game::move_up(const Event * theEvent, void * data){
+   std:: cout << "You pressed the up arrow\n";
 }
+
+void Game::move_backward(const Event *, void *)
+{
+	std::cout << "You pressed the down arrow\n";
+}
+void Game::move_left(const Event *, void *)
+{
+	std::cout << "You pressed the left arrow\n";
+}
+void Game::move_right(const Event *, void *)
+{
+	std::cout << "You pressed the right arrow\n";
+}
+void Game::esc(const Event *, void *)
+{
+	std::cout << "Exit\n";
+	exit(0);
+}
+

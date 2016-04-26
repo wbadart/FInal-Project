@@ -1,7 +1,9 @@
 #include <iostream>
 
-#include "Game.hpp"
-#include <pandaSystem.h>
+#include "Game.h"
+#include "Game.cpp"
+#include "pandaFramework.h"
+#include "pandaSystem.h"
 #include <genericAsyncTask.h>
 #include <asyncTaskManager.h>
 
@@ -28,7 +30,50 @@ AsyncTask::DoneStatus spinCameraTask(GenericAsyncTask *task, void *data){
 
     return AsyncTask::DS_cont;
 }
-
+//temporary move functions
+//void KeyPressed(string Key)
+//{
+//	switch (Key)
+//	{
+//		case "arrow_up":
+//			break;
+//		case "arrow_down":
+//			break;
+//		case "arrow_left":
+//			break;
+//		case "arrow_right":
+//			break;
+//		case "escape":
+//			break;
+//	}
+//}
+//called when up arrow is pressed
+/**
+void move_forward(const Event * theEvent, void * data)
+{
+	std::cout << "up arrow pressed" << std::endl;
+}
+//called when down arrow is pressed
+void move_backward(const Event * theEvent, void * data)
+{
+        std::cout << "down arrow pressed" << std::endl;
+}
+//called when left arrow is pressed
+void move_left(const Event * theEvent, void * data)
+{
+        std::cout << "left arrow pressed" << std::endl;
+}
+//called when right arrow is pressed
+void move_right(const Event * theEvent, void * data)
+{
+        std::cout << "right arrow pressed" << std::endl;
+}
+//called when esc is pressed, causes window to close
+void esc(const Event * theEvent, void * data)
+{
+	exit(0);
+}
+**/
 int main(int argc, char *argv[]){
 
     // Open window
@@ -46,10 +91,8 @@ int main(int argc, char *argv[]){
         maze.set_scale(10.25f, 10.25f, 10.25f);
         maze.set_pos(8, 22, 0);
 
-        // framework->define_key(<event name>, <description>, <function>, NULL);
-        // framework->define_key(<event name>, <description>, <function>, <data>);
-        game.framework.define_key("w", "w_move_forward", auto [](Event *e, void *d){
-                std::cout << "YOU PRESSED W!!!!\n";});
+        //game.framework.define_key("w", "w_move_forward", auto [](Event *e, void *d){
+        //std::cout << "YOU PRESSED W!!!!\n";});
 
         // Load environment
         // NodePath scene = game.load_model("environment");
@@ -104,8 +147,14 @@ int main(int argc, char *argv[]){
         // Start tasks and execute loop
         // taskMgr->add(new GenericAsyncTask("Spins the camera", &spinCameraTask, (void*) NULL));
 
-        game.framework.main_loop();
+	//keyboard detection
+	game.framework.define_key("arrow_up", "move forward", move_forward, 0);
+	game.framework.define_key("arrow_down", "move backward", move_backward, 0);
+	game.framework.define_key("arrow_left", "move left", move_left, 0);
+	game.framework.define_key("arrow_right", "move right", move_right, 0);
+	game.framework.define_key("escape", "exit", esc, 0);
 
+	game.framework.main_loop();
     }else{
         std::cerr << "Could not load window\n";
         return 1;

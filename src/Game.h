@@ -43,7 +43,12 @@ class Game{
         void setpc(NodePath);
 
         // Move a model
-        static void move_model_forward(const Event *, void *);
+        void move_forward(const Event *, void *);
+	void move_backward(const Event *, void *);
+	void move_left(const Event *, void *);
+	void move_right(const Event *, void *);
+	void esc(const Event *, void *);
+
 
     private:
 
