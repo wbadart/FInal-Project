@@ -6,8 +6,8 @@
  *
  */
 
-#ifndef GAME_H
-#define GAME_H
+#ifndef GAME_HPP
+#define GAME_HPP
 
 #include <iostream>
 #include <string>
@@ -43,11 +43,12 @@ class Game{
         void setpc(NodePath);
 
         // Move a model
-        void move_forward(const Event *, void *);
-	void move_backward(const Event *, void *);
-	void move_left(const Event *, void *);
-	void move_right(const Event *, void *);
-	void esc(const Event *, void *);
+
+	static void move_forward(const Event*, void*);
+	static void move_backward(const Event*, void*);
+	static void move_left(const Event*, void*);
+	static void move_right(const Event*, void*);
+	static void esc(const Event*, void*);
 
 
     private:

@@ -52,23 +52,24 @@ void Game::setpc(NodePath pc_in){
     pc = pc_in;
 }
 
-void Game::move_up(const Event * theEvent, void * data){
+void Game::move_forward(const Event* theEvent, void* data)
+{
    std:: cout << "You pressed the up arrow\n";
 }
 
-void Game::move_backward(const Event *, void *)
+void Game::move_backward(const Event* theEvent, void* data)
 {
 	std::cout << "You pressed the down arrow\n";
 }
-void Game::move_left(const Event *, void *)
+void Game::move_left(const Event* theEvent, void* data)
 {
 	std::cout << "You pressed the left arrow\n";
 }
-void Game::move_right(const Event *, void *)
+void Game::move_right(const Event* theEvent, void* data)
 {
 	std::cout << "You pressed the right arrow\n";
 }
-void Game::esc(const Event *, void *)
+void Game::esc(const Event* theEvent, void* data)
 {
 	std::cout << "Exit\n";
 	exit(0);

@@ -1,7 +1,6 @@
 #include <iostream>
 
-#include "Game.h"
-#include "Game.cpp"
+#include "Game.hpp"
 #include "pandaFramework.h"
 #include "pandaSystem.h"
 #include <genericAsyncTask.h>
@@ -31,50 +30,6 @@ AsyncTask::DoneStatus spinCameraTask(GenericAsyncTask *task, void *data){
 
     return AsyncTask::DS_cont;
 }
-//temporary move functions
-//void KeyPressed(string Key)
-//{
-//	switch (Key)
-//	{
-//		case "arrow_up":
-//			break;
-//		case "arrow_down":
-//			break;
-//		case "arrow_left":
-//			break;
-//		case "arrow_right":
-//			break;
-//		case "escape":
-//			break;
-//	}
-//}
-//called when up arrow is pressed
-/**
-void move_forward(const Event * theEvent, void * data)
-{
-	std::cout << "up arrow pressed" << std::endl;
-}
-//called when down arrow is pressed
-void move_backward(const Event * theEvent, void * data)
-{
-        std::cout << "down arrow pressed" << std::endl;
-}
-//called when left arrow is pressed
-void move_left(const Event * theEvent, void * data)
-{
-        std::cout << "left arrow pressed" << std::endl;
-}
-//called when right arrow is pressed
-void move_right(const Event * theEvent, void * data)
-{
-        std::cout << "right arrow pressed" << std::endl;
-}
-//called when esc is pressed, causes window to close
-void esc(const Event * theEvent, void * data)
-{
-	exit(0);
-}
-**/
 int main(int argc, char *argv[]){
 
     // Open window
@@ -155,11 +110,11 @@ int main(int argc, char *argv[]){
         // taskMgr->add(new GenericAsyncTask("Spins the camera", &spinCameraTask, (void*) NULL));
 
 	//keyboard detection
-	game.framework.define_key("arrow_up", "move forward", move_forward, 0);
-	game.framework.define_key("arrow_down", "move backward", move_backward, 0);
-	game.framework.define_key("arrow_left", "move left", move_left, 0);
-	game.framework.define_key("arrow_right", "move right", move_right, 0);
-	game.framework.define_key("escape", "exit", esc, 0);
+	game.framework.define_key("arrow_up-repeat", "move forward", game.move_forward, 0);
+	game.framework.define_key("arrow_down-repeat", "move backward", game.move_backward, 0);
+	game.framework.define_key("arrow_left-repeat", "move left", game.move_left, 0);
+	game.framework.define_key("arrow_right-repeat", "move right", game.move_right, 0);
+	game.framework.define_key("escape", "exit", game.esc, 0);
 
 	game.framework.main_loop();
     }else{
