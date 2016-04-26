@@ -2,26 +2,16 @@
 
 #include "Object.h"
 
-Object::Object(int p) {
+Object::Object(int p): points(p) {}
 
-	points = p;
-
-}
-
-Object::~Object() {
-
-
-}
+Object::~Object() {}
 
 int Object::getPoints() {
 
 	return points;
+
 }
 
-void Object::setPoints(int p) {
-
-	points = p;
-}
 
 int Obeject::isCollision() {
 	//collision detection stuff
