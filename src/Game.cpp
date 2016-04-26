@@ -37,6 +37,26 @@ bool Game::open_window(void){
     return true;;
 }
 
+void Game::init_models(void){
+
+    // NodePath scene = game.load_model("environment");
+    // scene.reparent_to(game.window->get_render());
+    // scene.set_scale(0.25f, 0.25f, 0.25f);
+    // scene.set_pos(8, 22, 0);
+    env = load_model("models/Maze.egg");
+    PT(Texture) myTexture = TexturePool::load_texture("models/tex/wall.jpg");
+    env.reparent_to(window->get_render());
+    env.set_scale(10.25f, 10.25f, 10.25f);
+    env.set_pos(8, 22, 0);
+    env.set_texture(myTexture);
+
+    // Load model
+    pc = load_model("models/dog.egg");
+    pc.set_scale(0.5);
+    pc.reparent_to(window->get_render());
+    window->load_model(pc, "models/dog-Anim0.egg");
+}
+
 NodePath Game::load_model(char *model_name){
     if(window_is_open)
         return window->load_model(framework.get_models(), model_name);

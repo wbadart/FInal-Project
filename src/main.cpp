@@ -9,7 +9,6 @@
 #include <cIntervalManager.h>
 #include <cLerpNodePathInterval.h>
 #include <cMetaInterval.h>
-#include <texturePool.h>
 
 // Global task manager
 PT(AsyncTaskManager) taskMgr = AsyncTaskManager::get_global_ptr();
@@ -41,78 +40,24 @@ int main(int argc, char *argv[]){
         camera = game.window->get_camera_group();
         std::cout << "Successfully opened window\n";
 
-        // Load environment
-        NodePath maze = game.load_model("models/Maze.egg");
-        maze.reparent_to(game.window->get_render());
-        maze.set_scale(10.25f, 10.25f, 10.25f);
-        maze.set_pos(8, 22, 0);
-
-        // NodePath scene = game.load_model("environment");
-        // scene.reparent_to(game.window->get_render());
-        // scene.set_scale(0.25f, 0.25f, 0.25f);
-        // scene.set_pos(8, 22, 0);
-        NodePath scene = game.load_model("models/Maze.egg");
-        PT(Texture) myTexture = TexturePool::load_texture("models/tex/wall.jpg");
-        scene.reparent_to(game.window->get_render());
-        scene.set_scale(10.25f, 10.25f, 10.25f);
-        scene.set_pos(8, 22, 0);
-        scene.set_texture(myTexture);
-
-        // Load model
-        NodePath pandaActor = game.load_model("models/dog.egg");
-        pandaActor.set_scale(0.5);
-        pandaActor.reparent_to(game.window->get_render());
+        // Load models
+        game.init_models();
 
         // Load animation
-        game.window->load_model(pandaActor, "models/dog-Anim0.egg");
         game.window->loop_animations(0);
-
-        // Create lerp intervals needed to walk back and forth
-        /*PT(CLerpNodePathInterval) pandaPosInterval1, pandaPosInterval2,
-            pandaHprInterval1, pandaHprInterval2;
-
-        pandaPosInterval1 = new CLerpNodePathInterval("pandaPosInterval1",
-                13.0, CLerpInterval::BT_no_blend, true, false, pandaActor, NodePath());
-        pandaPosInterval1->set_start_pos(LPoint3f(0, 10, 0));
-        pandaPosInterval1->set_end_pos(LPoint3f(0, -10, 0));
-    
-        pandaPosInterval2 = new CLerpNodePathInterval("pandaPosInterval2",
-                13.0, CLerpInterval::BT_no_blend, true, false, pandaActor, NodePath());
-        pandaPosInterval2->set_start_pos(LPoint3f(0, -10, 0));
-        pandaPosInterval2->set_end_pos(LPoint3f(0, 10, 0));
-
-        pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.,
-                CLerpInterval::BT_no_blend, true, false, pandaActor, NodePath());
-        pandaHprInterval1->set_start_hpr(LPoint3f(0, 0, 0));
-        pandaHprInterval1->set_end_hpr(LPoint3f(180, 0, 0));
-
-        pandaHprInterval2 = new CLerpNodePathInterval("pandaHptInterval2", 3.,
-                CLerpInterval::BT_no_blend, true, false, pandaActor, NodePath());
-        pandaHprInterval2->set_start_hpr(LPoint3f(180, 0, 0));
-        pandaHprInterval2->set_end_hpr(LPoint3f(0, 0, 0));
-
-        // Create and play the sequence of intervals
-        PT(CMetaInterval) pandaPace;;
-        pandaPace = new CMetaInterval("pandaPace");
-        pandaPace->add_c_interval(pandaPosInterval1, 0, CMetaInterval::RS_previous_end);
-        pandaPace->add_c_interval(pandaPosInterval2, 0, CMetaInterval::RS_previous_end);
-        pandaPace->add_c_interval(pandaHprInterval1, 0, CMetaInterval::RS_previous_end);
-        pandaPace->add_c_interval(pandaHprInterval2, 0, CMetaInterval::RS_previous_end);
-
-        pandaPace->loop(); */
-
 
         // Start tasks and execute loop
         // taskMgr->add(new GenericAsyncTask("Spins the camera", &spinCameraTask, (void*) NULL));
 
-	//keyboard detection
-	game.framework.define_key("arrow_up-repeat", "move forward", game.move_forward, 0);
-	game.framework.define_key("arrow_down-repeat", "move backward", game.move_backward, 0);
-	game.framework.define_key("arrow_left-repeat", "move left", game.move_left, 0);
-	game.framework.define_key("arrow_right-repeat", "move right", game.move_right, 0);
-	game.framework.define_key("escape", "exit", game.esc, 0);
+	    //keyboard detection
+	    game.framework.define_key("arrow_up-repeat", "move forward", game.move_forward, 0);
+	    game.framework.define_key("arrow_down-repeat", "move backward", game.move_backward, 0);
+	    game.framework.define_key("arrow_left-repeat", "move left", game.move_left, 0);
+	    game.framework.define_key("arrow_right-repeat", "move right", game.move_right, 0);
+	    game.framework.define_key("escape", "exit", game.esc, 0);
 
-	game.framework.main_loop();
+	    game.framework.main_loop();
+
     }else{
         std::cerr << "Could not load window\n";
         return 1;

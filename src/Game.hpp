@@ -17,6 +17,7 @@
 // Or just use the makefile (be sure PANDA_CPATH and PANDA_LIB
 // environment variables are up to date for this)
 #include <pandaFramework.h>
+#include <texturePool.h>
 
 class Game{
     public:
@@ -29,6 +30,9 @@ class Game{
 
         // Wrapper to PandaFramework::openwindow(); includes failure check
         bool open_window(void);
+
+        // Load models into window once it's opened
+        void init_models(void);
 
         // Wrappers to WindowFramework::load_model
         NodePath load_model(char *model_name);
@@ -44,11 +48,11 @@ class Game{
 
         // Move a model
 
-	static void move_forward(const Event*, void*);
-	static void move_backward(const Event*, void*);
-	static void move_left(const Event*, void*);
-	static void move_right(const Event*, void*);
-	static void esc(const Event*, void*);
+	    static void move_forward(const Event*, void*);
+	    static void move_backward(const Event*, void*);
+	    static void move_left(const Event*, void*);
+	    static void move_right(const Event*, void*);
+	    static void esc(const Event*, void*);
 
 
     private:
@@ -62,6 +66,9 @@ class Game{
         // Stores the player character object. Will be converted to
         // our object class down the line
         NodePath pc;
+
+        // Store the environment nodepath
+        NodePath env;
 };
 
 #endif
