@@ -43,7 +43,7 @@ int main(int argc, char *argv[]){
 
         // Load environment
         // NodePath scene = game.load_model("environment");
-        NodePath scene = game.load_model("environment");
+        NodePath scene = game.load_model("models/Maze.egg");
         // NodePath scene = game.load_model("./Maze.egg");
         scene.reparent_to(game.window->get_render());
         // scene.set_scale(10.25f, 10.25f, 10.25f);
@@ -51,7 +51,7 @@ int main(int argc, char *argv[]){
         scene.set_pos(8, 22, 0);
 
         // Load model
-        NodePath pandaActor = game.load_model("./dog.egg");
+        NodePath pandaActor = game.load_model("models/dog.egg");
         pandaActor.set_scale(0.5);
         pandaActor.reparent_to(game.window->get_render());
 
