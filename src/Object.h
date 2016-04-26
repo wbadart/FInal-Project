@@ -1,3 +1,6 @@
+// Object header file
+// Object class is base class of all retrievable objects in game (bone, toy, vacuum, shampoo)
+
 #ifndef OBJECT_H
 #define OBJECT_H
 
@@ -10,7 +13,6 @@ class Object {
 		Object(int);
 		~Object();
 		int getPoints();
-		void setPoints(int);	//can either add or subtract points
 		int isCollision();	//returns 1 if there is a collision
 		virtual void draw();	//draw function
 	private:
