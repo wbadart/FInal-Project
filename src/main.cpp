@@ -47,10 +47,6 @@ int main(int argc, char *argv[]){
         maze.set_scale(10.25f, 10.25f, 10.25f);
         maze.set_pos(8, 22, 0);
 
-        //game.framework.define_key("w", "w_move_forward", auto [](Event *e, void *d){
-        //std::cout << "YOU PRESSED W!!!!\n";});
-
-        // Load environment
         // NodePath scene = game.load_model("environment");
         // scene.reparent_to(game.window->get_render());
         // scene.set_scale(0.25f, 0.25f, 0.25f);
