@@ -57,6 +57,15 @@ void Game::init_models(void){
     window->load_model(pc, "models/dog-Anim0.egg");
 }
 
+void Game::init_keybindings(void){
+	//keyboard detection
+	framework.define_key("arrow_up-repeat", "move forward", move_forward, 0);
+	framework.define_key("arrow_down-repeat", "move backward", move_backward, 0);
+	framework.define_key("arrow_left-repeat", "move left", move_left, 0);
+	framework.define_key("arrow_right-repeat", "move right", move_right, 0);
+	framework.define_key("escape", "exit", esc, 0);
+}
+
 NodePath Game::load_model(char *model_name){
     if(window_is_open)
         return window->load_model(framework.get_models(), model_name);

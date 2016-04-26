@@ -34,6 +34,9 @@ class Game{
         // Load models into window once it's opened
         void init_models(void);
 
+        // Setup keybindings
+        void init_keybindings(void);
+
         // Wrappers to WindowFramework::load_model
         NodePath load_model(char *model_name);
         NodePath load_model(std::string model_name);
@@ -47,7 +50,6 @@ class Game{
         void setpc(NodePath);
 
         // Move a model
-
 	    static void move_forward(const Event*, void*);
 	    static void move_backward(const Event*, void*);
 	    static void move_left(const Event*, void*);
