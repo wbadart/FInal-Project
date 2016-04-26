@@ -7,20 +7,8 @@ class Vacuum: public Object {
 
 	public:
 		Vacuum();
-
+		~Vacuum();
 	private:
-		
-
-
-
-
-
 }
-
-Vacuum::Vacuum(): Object(-5) {
-
-
-}
-
 
 #endif

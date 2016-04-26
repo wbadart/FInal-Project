@@ -7,20 +7,8 @@ class Bone: public Object {
 
 	public:
 		Bone();
-
+		~Bone();
 	private:
-		
-
-
-
-
 
 }
-
-Bone::Bone(): Object(5) {
-
-
-}
-
-
 #endif

@@ -7,20 +7,7 @@ class Shampoo: public Object {
 
 	public:
 		Shampoo();
-
+		~Shampoo();
 	private:
-		
-
-
-
-
-
 }
-
-Shampoo::Shampoo(): Object(-10) {
-
-
-}
-
-
 #endif

@@ -1,5 +1,5 @@
-#ifndef ChewToy_H
-#define ChewToy_H
+#ifndef CHEWTOY_H
+#define CHEWTOY_H
 
 #include "Object.h"
 
@@ -7,20 +7,8 @@ class ChewToy: public Object {
 
 	public:
 		ChewToy();
-
+		~ChewToy();
 	private:
-		
-
-
-
-
 
 }
-
-ChewToy::ChewToy(): Object(10) {
-
-
-}
-
-
 #endif
