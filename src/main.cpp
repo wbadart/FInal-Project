@@ -42,12 +42,9 @@ int main(int argc, char *argv[]){
         std::cout << "Successfully opened window\n";
 
         // Load environment
-        // NodePath scene = game.load_model("environment");
         NodePath scene = game.load_model("models/Maze.egg");
-        // NodePath scene = game.load_model("./Maze.egg");
         scene.reparent_to(game.window->get_render());
-        // scene.set_scale(10.25f, 10.25f, 10.25f);
-        scene.set_scale(0.25f, 0.25f, 0.25f);
+        scene.set_scale(10.25f, 10.25f, 10.25f);
         scene.set_pos(8, 22, 0);
 
         // Load model
@@ -56,7 +53,7 @@ int main(int argc, char *argv[]){
         pandaActor.reparent_to(game.window->get_render());
 
         // Load animation
-        game.window->load_model(pandaActor, "dog-Anim0.egg");
+        game.window->load_model(pandaActor, "models/dog-Anim0.egg");
         game.window->loop_animations(0);
 
         // Create lerp intervals needed to walk back and forth
