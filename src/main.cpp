@@ -30,10 +30,9 @@ AsyncTask::DoneStatus spinCameraTask(GenericAsyncTask *task, void *data){
 }
 
 int main(int argc, char *argv[]){
+
     // Open window
-
     Game game(argc, argv);
-
 
     // Check if window opened
     if(game.open_window()){
@@ -46,6 +45,11 @@ int main(int argc, char *argv[]){
         maze.reparent_to(game.window->get_render());
         maze.set_scale(10.25f, 10.25f, 10.25f);
         maze.set_pos(8, 22, 0);
+
+        // framework->define_key(<event name>, <description>, <function>, NULL);
+        // framework->define_key(<event name>, <description>, <function>, <data>);
+        game.framework.define_key("w", "w_move_forward", auto [](Event *e, void *d){
+                std::cout << "YOU PRESSED W!!!!\n";});
 
         // Load environment
         // NodePath scene = game.load_model("environment");

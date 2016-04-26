@@ -47,3 +47,11 @@ NodePath Game::load_model(char *model_name){
 NodePath Game::load_model(std::string model_name){
     return load_model(model_name.c_str());
 }
+
+void Game::setpc(NodePath pc_in){
+    pc = pc_in;
+}
+
+void Game::move_model_forward(const Event *e, void *dataptr){
+    std:: cout << "YOU PRESSED W!!!\n";
+}
