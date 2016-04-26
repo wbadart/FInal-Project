@@ -42,10 +42,16 @@ int main(int argc, char *argv[]){
         std::cout << "Successfully opened window\n";
 
         // Load environment
-        NodePath scene = game.load_model("models/Maze.egg");
-        scene.reparent_to(game.window->get_render());
-        scene.set_scale(10.25f, 10.25f, 10.25f);
-        scene.set_pos(8, 22, 0);
+        NodePath maze = game.load_model("models/MazeTex.egg");
+        maze.reparent_to(game.window->get_render());
+        maze.set_scale(10.25f, 10.25f, 10.25f);
+        maze.set_pos(8, 22, 0);
+
+        // Load environment
+        // NodePath scene = game.load_model("environment");
+        // scene.reparent_to(game.window->get_render());
+        // scene.set_scale(0.25f, 0.25f, 0.25f);
+        // scene.set_pos(8, 22, 0);
 
         // Load model
         NodePath pandaActor = game.load_model("models/dog.egg");
