@@ -18,6 +18,9 @@
 // environment variables are up to date for this)
 #include <pandaFramework.h>
 #include <texturePool.h>
+#include <cIntervalManager.h>
+#include <cLerpNodePathInterval.h>
+#include <cMetaInterval.h>
 
 class Game{
     public:
@@ -67,10 +70,13 @@ class Game{
 
         // Stores the player character object. Will be converted to
         // our object class down the line
-        NodePath pc;
+        static NodePath pc;
 
         // Store the environment nodepath
         NodePath env;
+        NodePath camera;
+
+        int curRot;
 };
 
 #endif

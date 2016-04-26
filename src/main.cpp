@@ -21,26 +21,6 @@ int main(int argc, char *argv[]){
     // Open window
     Game game(argc, argv);
 
-    // Check if window opened
-    if(game.open_window()){
-
-        camera = game.window->get_camera_group();
-        std::cout << "Successfully opened window\n";
-
-        // Load models
-        game.init_models();
-
-        // Setup controls
-        game.init_keybindings();
-
-        // Start tasks and execute loop
-	    game.framework.main_loop();
-
-    }else{
-        std::cerr << "Could not load window\n";
-        return 1;
-    }
-
     //Close down
     game.framework.close_framework();
     return 0;

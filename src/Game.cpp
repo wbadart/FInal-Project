@@ -7,7 +7,6 @@
  */
 
 #include "Game.hpp"
-
 Game::Game(int argc_in, char *argv_in[]):
         Game(argc_in, argv_in, "Default window name"){};
 
@@ -17,7 +16,11 @@ Game::Game(int argc_in, char *argv_in[], std::string window_name_in):
     // Init framework and open window
     framework.open_framework(argc_in, argv_in);
     framework.set_window_title(window_name);
-    
+    open_window();
+    camera = window->get_camera_group();
+    init_keybindings();
+    init_models();
+    framework.main_loop();
 }
 
 bool Game::open_window(void){
@@ -51,14 +54,13 @@ void Game::init_models(void){
     env.set_texture(myTexture);
 
     // Load model
-    pc = load_model("models/dog.egg");
+    Game::pc = load_model("models/dog.egg");
     pc.set_scale(0.5);
     pc.reparent_to(window->get_render());
     window->load_model(pc, "models/dog-Anim0.egg");
 
     // Load animation
     window->loop_animations(0);
-
 }
 
 void Game::init_keybindings(void){
@@ -97,7 +99,18 @@ void Game::move_backward(const Event* theEvent, void* data)
 void Game::move_left(const Event* theEvent, void* data)
 {
 	std::cout << "You pressed the left arrow\n";
+    PT(CLerpNodePathInterval) pandaHprInterval1;
+    
+    pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, NodePath());
+    pandaHprInterval1->set_start_hpr(LPoint3f(0, 0, 0));
+    pandaHprInterval1->set_end_hpr(LPoint3f(45, 0, 0));
+
+    PT(CMetaInterval) pandaPace;
+    pandaPace = new CMetaInterval("pandaPace");
+    pandaPace->add_c_interval(pandaHprInterval1, 0, CMetaInterval::RS_previous_end);
+    pandaPace->start();
 }
+
 void Game::move_right(const Event* theEvent, void* data)
 {
 	std::cout << "You pressed the right arrow\n";
