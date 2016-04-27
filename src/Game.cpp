@@ -7,6 +7,7 @@
  */
 
 #include "Game.hpp"
+pc = new NodePath;
 Game::Game(int argc_in, char *argv_in[]):
         Game(argc_in, argv_in, "Default window name"){};
 
@@ -54,7 +55,7 @@ void Game::init_models(void){
     env.set_texture(myTexture);
 
     // Load model
-    Game::pc = load_model("models/dog.egg");
+    pc = load_model("models/dog.egg");
     pc.set_scale(0.5);
     pc.reparent_to(window->get_render());
     window->load_model(pc, "models/dog-Anim0.egg");
@@ -89,12 +90,33 @@ void Game::setpc(NodePath pc_in){
 
 void Game::move_forward(const Event* theEvent, void* data)
 {
-   std:: cout << "You pressed the up arrow\n";
+    std:: cout << "You pressed the up arrow\n";
+    PT(CLerpNodePathInterval) pandaHprInterval1;
+
+    pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, NodePath());
+    pandaHprInterval1->set_start_pos(LPoint3f(0, 0, 0));
+    pandaHprInterval1->set_end_pos(LPoint3f(0, -10, 0));
+
+    PT(CMetaInterval) pandaPace;
+    pandaPace = new CMetaInterval("pandaPace");
+    pandaPace->add_c_interval(pandaHprInterval1, 0, CMetaInterval::RS_previous_end);
+    pandaPace->start();
+}
 }
 
 void Game::move_backward(const Event* theEvent, void* data)
 {
 	std::cout << "You pressed the down arrow\n";
+    PT(CLerpNodePathInterval) pandaHprInterval1;
+    
+    pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, NodePath());
+    pandaHprInterval1->set_start_pos(LPoint3f(0, 0, 0));
+    pandaHprInterval1->set_end_pos(LPoint3f(0, -10, 0));
+
+    PT(CMetaInterval) pandaPace;
+    pandaPace = new CMetaInterval("pandaPace");
+    pandaPace->add_c_interval(pandaHprInterval1, 0, CMetaInterval::RS_previous_end);
+    pandaPace->start();
 }
 void Game::move_left(const Event* theEvent, void* data)
 {
@@ -114,6 +136,16 @@ void Game::move_left(const Event* theEvent, void* data)
 void Game::move_right(const Event* theEvent, void* data)
 {
 	std::cout << "You pressed the right arrow\n";
+    PT(CLerpNodePathInterval) pandaHprInterval1;
+    
+    pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, NodePath());
+    pandaHprInterval1->set_start_hpr(LPoint3f(45, 0, 0));
+    pandaHprInterval1->set_end_hpr(LPoint3f(0, 0, 0));
+
+    PT(CMetaInterval) pandaPace;
+    pandaPace = new CMetaInterval("pandaPace");
+    pandaPace->add_c_interval(pandaHprInterval1, 0, CMetaInterval::RS_previous_end);
+    pandaPace->start();
 }
 void Game::esc(const Event* theEvent, void* data)
 {
