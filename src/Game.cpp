@@ -29,6 +29,7 @@ Game::Game(int argc_in, char *argv_in[], std::string window_name_in):
     camera.set_pos(0, -3, 2);
     init_keybindings();
     init_models();
+    run();
     framework.main_loop();
 }
 
@@ -65,23 +66,6 @@ void Game::init_models(void){
     pc.reparent_to(window->get_render());
     window->load_model(pc, "models/dog-Anim0.egg");
 
-    //Collision Detection
-    CollisionNode* cNode = new CollisionNode("pc");
-    cNode->add_solid(new CollisionSphere(0,0,0,1.0));
-    NodePath pcC = pc.attach_new_node(cNode);
-    cNode = new CollisionNode("env");
-    cNode->add_solid(new CollisionSphere(0,0,0,1.0));
-    NodePath envC = env.attach_new_node(cNode);
-    CollisionHandlerPusher pusher;
-    CollisionTraverser* collTrav = new CollisionTraverser();
-    pusher.add_collider(pcC, pc);
-    collTrav->add_collider(pcC, &pusher);
-    Thread *current_thread = Thread::get_current_thread();
-//    while(framework.do_frame(current_thread))
-//    {
-	//check collisions
-	collTrav->traverse(window->get_render());
-//    }
     camera.reparent_to(pc);
     camera.set_pos(18, 1, 8);
     camera.look_at(0, 0, 0);
@@ -96,6 +80,21 @@ void Game::run(void){
     NodePath text_node;
     std::string time_string;
     float time;
+    //Collision Detection
+    PT(CollisionNode) cNode = new CollisionNode("cNode");
+    cNode->add_solid(new CollisionSphere(0,0,0,1.0));
+    NodePath pcC = pc.attach_new_node(cNode);
+    pcC.show();
+    cNode = new CollisionNode("cNode");
+    cNode->add_solid(new CollisionSphere(0,0,0,1.0));
+    NodePath envC = env.attach_new_node(cNode);
+    envC.show();
+    CollisionHandlerPusher pusher;
+    CollisionTraverser* collTrav = new CollisionTraverser();
+    collTrav->add_collider(pcC, &pusher);
+    pusher.add_collider(pcC, pc);
+    collTrav->add_collider(envC, &pusher);
+    pusher.add_collider(envC, env);
 
     while(framework.do_frame(Thread::get_current_thread())){
         time = ClockObject::get_global_clock()->get_frame_time();
@@ -105,7 +104,10 @@ void Game::run(void){
         text_node = window->get_aspect_2d().attach_new_node(text);
         text_node.set_pos(0.95, 0, 0.9);
         text_node.set_scale(0.05);
-    }
+    
+	//check collisions
+	collTrav->traverse(window->get_render());
+	}
 }
 
 void Game::init_keybindings(void){
