@@ -25,7 +25,7 @@ Game::Game(int argc_in, char *argv_in[], std::string window_name_in):
     framework.set_window_title(window_name);
     open_window();
     camera = window->get_camera_group();
-    camera.reparent_to(pc);
+    camera.reparent_to(window->get_render());
     camera.set_pos(0, -3, 2);
     init_keybindings();
     init_models();
@@ -43,7 +43,7 @@ bool Game::open_window(void){
 
     // Enable keyboard and camera control
     window->enable_keyboard();
-    window->setup_trackball();
+    // window->setup_trackball();
     
     window_is_open = true;
     return true;;
@@ -82,6 +82,11 @@ void Game::init_models(void){
 	//check collisions
 	collTrav->traverse(window->get_render());
 //    }
+    camera.reparent_to(pc);
+    camera.set_pos(18, 1, 8);
+    camera.look_at(0, 0, 0);
+    camera.set_p(0);
+
     // Load animation
     window->loop_animations(0);
 }
@@ -107,13 +112,26 @@ void Game::init_keybindings(void){
 	//keyboard detection for game controls: 4 arrow keys and esc
 	framework.define_key("arrow_up-repeat", "move forward", move_forward, 0);
     framework.define_key("arrow_up", "move forward", move_forward, 0);
+    framework.define_key("w-repeat", "move forward", move_forward, 0);
+    framework.define_key("w", "move forward", move_forward, 0);
+
 	framework.define_key("arrow_down-repeat", "move backward", move_backward, 0);
     framework.define_key("arrow_down", "move backward", move_backward, 0);
+	framework.define_key("s-repeat", "move backward", move_backward, 0);
+    framework.define_key("s", "move backward", move_backward, 0);
+
 	framework.define_key("arrow_left-repeat", "move left", move_left, 0);
     framework.define_key("arrow_left", "move left", move_left, 0);
+	framework.define_key("a-repeat", "move left", move_left, 0);
+    framework.define_key("a", "move left", move_left, 0);
+
 	framework.define_key("arrow_right-repeat", "move right", move_right, 0);
-    framework.define_key("arrow_right-repeat", "move right", move_right, 0);
+    framework.define_key("arrow_right", "move right", move_right, 0);
+	framework.define_key("d-repeat", "move right", move_right, 0);
+    framework.define_key("d", "move right", move_right, 0);
+
 	framework.define_key("escape", "exit", esc, 0);
+	framework.define_key("q", "exit", esc, 0);
 }
 
 //Wrappers to WindowFramework::load_model
@@ -184,8 +202,8 @@ void Game::move_right(const Event* theEvent, void* data)
     PT(CLerpNodePathInterval) pandaHprInterval1;
     
     pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, pc);
-    pandaHprInterval1->set_start_hpr(LPoint3f(45, 0, 0));
-    pandaHprInterval1->set_end_hpr(LPoint3f(0, 0, 0));
+    pandaHprInterval1->set_start_hpr(LPoint3f(0, 0, 0));
+    pandaHprInterval1->set_end_hpr(LPoint3f(-45, 0, 0));
 
     PT(CMetaInterval) pandaPace;
     pandaPace = new CMetaInterval("pandaPace");
