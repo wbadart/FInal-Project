@@ -156,7 +156,7 @@ void Game::move_forward(const Event* theEvent, void* data)
 
     pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, pc);
     pandaHprInterval1->set_start_pos(LPoint3f(0, 0, 0));
-    pandaHprInterval1->set_end_pos(LPoint3f(-5, 0, 0));
+    pandaHprInterval1->set_end_pos(LPoint3f(-.5, 0, 0));
 
     PT(CMetaInterval) pandaPace;
     pandaPace = new CMetaInterval("pandaPace");
@@ -174,13 +174,14 @@ void Game::move_backward(const Event* theEvent, void* data)
     
     pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, pc);
     pandaHprInterval1->set_start_pos(LPoint3f(0, 0, 0));
-    pandaHprInterval1->set_end_pos(LPoint3f(5, 0, 0));
+    pandaHprInterval1->set_end_pos(LPoint3f(.5, 0, 0));
 
     PT(CMetaInterval) pandaPace;
     pandaPace = new CMetaInterval("pandaPace");
     pandaPace->add_c_interval(pandaHprInterval1, 0, CMetaInterval::RS_previous_end);
     pandaPace->start();
 }
+
 void Game::move_left(const Event* theEvent, void* data)
 {
 	std::cout << "You pressed the left arrow\n";
@@ -188,7 +189,7 @@ void Game::move_left(const Event* theEvent, void* data)
     
     pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, pc);
     pandaHprInterval1->set_start_hpr(LPoint3f(0, 0, 0));
-    pandaHprInterval1->set_end_hpr(LPoint3f(45, 0, 0));
+    pandaHprInterval1->set_end_hpr(LPoint3f(5, 0, 0));
 
     PT(CMetaInterval) pandaPace;
     pandaPace = new CMetaInterval("pandaPace");
@@ -203,7 +204,7 @@ void Game::move_right(const Event* theEvent, void* data)
     
     pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, pc);
     pandaHprInterval1->set_start_hpr(LPoint3f(0, 0, 0));
-    pandaHprInterval1->set_end_hpr(LPoint3f(-45, 0, 0));
+    pandaHprInterval1->set_end_hpr(LPoint3f(-5, 0, 0));
 
     PT(CMetaInterval) pandaPace;
     pandaPace = new CMetaInterval("pandaPace");
