@@ -19,6 +19,8 @@ Game::Game(int argc_in, char *argv_in[], std::string window_name_in):
     framework.set_window_title(window_name);
     open_window();
     camera = window->get_camera_group();
+    camera.reparent_to(pc);
+    camera.set_pos(0, -3, 2);
     init_keybindings();
     init_models();
     framework.main_loop();
@@ -43,10 +45,10 @@ bool Game::open_window(void){
 
 void Game::init_models(void){
 
-    // NodePath scene = game.load_model("environment");
-    // scene.reparent_to(game.window->get_render());
-    // scene.set_scale(0.25f, 0.25f, 0.25f);
-    // scene.set_pos(8, 22, 0);
+    /*NodePath scene = load_model("environment");
+    scene.reparent_to(window->get_render());
+    scene.set_scale(0.35f, 0.35f, 0.35f);
+    scene.set_pos(8, 22, 0); */
     env = load_model("models/Maze.egg");
     PT(Texture) myTexture = TexturePool::load_texture("models/tex/wall.jpg");
     env.reparent_to(window->get_render());
@@ -67,9 +69,13 @@ void Game::init_models(void){
 void Game::init_keybindings(void){
 	//keyboard detection
 	framework.define_key("arrow_up-repeat", "move forward", move_forward, 0);
+    framework.define_key("arrow_up", "move forward", move_forward, 0);
 	framework.define_key("arrow_down-repeat", "move backward", move_backward, 0);
+    framework.define_key("arrow_down", "move backward", move_backward, 0);
 	framework.define_key("arrow_left-repeat", "move left", move_left, 0);
+    framework.define_key("arrow_left", "move left", move_left, 0);
 	framework.define_key("arrow_right-repeat", "move right", move_right, 0);
+    framework.define_key("arrow_right-repeat", "move right", move_right, 0);
 	framework.define_key("escape", "exit", esc, 0);
 }
 
@@ -93,9 +99,9 @@ void Game::move_forward(const Event* theEvent, void* data)
     std:: cout << "You pressed the up arrow\n";
     PT(CLerpNodePathInterval) pandaHprInterval1;
 
-    pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, NodePath());
+    pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, pc);
     pandaHprInterval1->set_start_pos(LPoint3f(0, 0, 0));
-    pandaHprInterval1->set_end_pos(LPoint3f(0, -10, 0));
+    pandaHprInterval1->set_end_pos(LPoint3f(-5, 0, 0));
 
     PT(CMetaInterval) pandaPace;
     pandaPace = new CMetaInterval("pandaPace");
@@ -108,9 +114,9 @@ void Game::move_backward(const Event* theEvent, void* data)
 	std::cout << "You pressed the down arrow\n";
     PT(CLerpNodePathInterval) pandaHprInterval1;
     
-    pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, NodePath());
+    pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, pc);
     pandaHprInterval1->set_start_pos(LPoint3f(0, 0, 0));
-    pandaHprInterval1->set_end_pos(LPoint3f(0, -10, 0));
+    pandaHprInterval1->set_end_pos(LPoint3f(5, 0, 0));
 
     PT(CMetaInterval) pandaPace;
     pandaPace = new CMetaInterval("pandaPace");
@@ -122,7 +128,7 @@ void Game::move_left(const Event* theEvent, void* data)
 	std::cout << "You pressed the left arrow\n";
     PT(CLerpNodePathInterval) pandaHprInterval1;
     
-    pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, NodePath());
+    pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, pc);
     pandaHprInterval1->set_start_hpr(LPoint3f(0, 0, 0));
     pandaHprInterval1->set_end_hpr(LPoint3f(45, 0, 0));
 
@@ -137,7 +143,7 @@ void Game::move_right(const Event* theEvent, void* data)
 	std::cout << "You pressed the right arrow\n";
     PT(CLerpNodePathInterval) pandaHprInterval1;
     
-    pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, NodePath());
+    pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, pc);
     pandaHprInterval1->set_start_hpr(LPoint3f(45, 0, 0));
     pandaHprInterval1->set_end_hpr(LPoint3f(0, 0, 0));
 
