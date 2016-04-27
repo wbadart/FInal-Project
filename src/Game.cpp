@@ -11,6 +11,7 @@
 #include <collisionHandlerPusher.h>
 #include <collisionNode.h>
 #include <collisionSphere.h>
+#include <collisionTube.h>
 
 NodePath Game::pc = NodePath();
 NodePath Game::camera = NodePath();
@@ -85,25 +86,9 @@ void Game::init_models(void){
     pc.reparent_to(window->get_render());
     window->load_model(pc, "models/dog-Anim0.egg");
 
-    //Collision Detection
-    CollisionNode* cNode = new CollisionNode("cNode");
-    cNode->add_solid(new CollisionSphere(0,0,0,1.0));
-    NodePath pcC = pc.attach_new_node(cNode);
-    /*cNode = new CollisionNode("env");
-    cNode->add_solid();
-    NodePath envC = env.attach_new_node(cNode); */
-    ModelRoot* geometry = ModelPool::load_model("models/Maze.egg");
-    cNode = new CollisionNode("cNode");
-    cNode->set_collide_mask(geometry->get_into_collide_mask());
-    CollisionHandlerPusher pusher;
-    CollisionTraverser* collTrav = new CollisionTraverser();
-    pusher.add_collider(pcC, pc);
-    collTrav->add_collider(pcC, &pusher);
-    Thread *current_thread = Thread::get_current_thread();
 //    while(framework.do_frame(current_thread))
 //    {
 	//check collisions
-	collTrav->traverse(window->get_render());
 //    }
     camera.reparent_to(pc);
     camera.set_pos(18, 1, 8);
@@ -119,15 +104,38 @@ void Game::run(void){
     NodePath text_node;
     std::string time_string;
     float time;
+    //Collision Detection
+    CollisionTraverser* collTrav = new CollisionTraverser();
+    CollisionHandlerPusher pusher;
+    CollisionNode* cNode = new CollisionNode("cNode");
+    cNode->add_solid(new CollisionSphere(0,0,0,1.0));
+    cNode->add_solid(new CollisionSphere(5,0,0,1.0));
+    //CollisionTube(LPoint3f(5, 0, 0), LPoint3f(-1, 0, 0), 2.0));
+    NodePath pcC = pc.attach_new_node(cNode);
+    pcC.show();
+    cNode = new CollisionNode("cNode");
+    cNode->add_solid(new CollisionBox(LPoint3f(0, 2.9, 0), 3, 0.05 , 1.0)); //a
+    cNode->add_solid(new CollisionBox(LPoint3f(2.95, 0, 0), 0.05, 3 , 1.0)); //b
+    cNode->add_solid(new CollisionBox(LPoint3f(0, -2.95, 0), 3, 0.05 , 1.0)); //c
+    cNode->add_solid(new CollisionBox(LPoint3f(-2.95, 0, 0), 0.05, 3 , 1.0)); //d
+    cNode->add_solid(new CollisionBox(LPoint3f(-2.0, 1.5, 0), 0.06, 0.5, 1.0)); //e
+    cNode->add_solid(new CollisionBox(LPoint3f(0, 2.0, 0), 2, 0.06 , 1.0)); //f
+    cNode->add_solid(new CollisionBox(LPoint3f(2.0, 0.6, 0), 0.06, 1.5 , 1.0)); //g
+    cNode->add_solid(new CollisionBox(LPoint3f(0.65, -0.85, 0), 0.5, 0.06 , 1.0)); //h
+    NodePath envC = env.attach_new_node(cNode);
+    envC.show();
+    pusher.add_collider(pcC, pc);
+    collTrav->add_collider(pcC, &pusher);
+    //Thread *current_thread = Thread::get_current_thread();
 
     while(framework.do_frame(Thread::get_current_thread())){
         time = ClockObject::get_global_clock()->get_frame_time();
         time_string = "Time: " + std::to_string((int)time) + " seconds";
-
         text->set_text(time_string);
         text_node = window->get_aspect_2d().attach_new_node(text);
         text_node.set_pos(0.95, 0, 0.9);
         text_node.set_scale(0.05);
+        collTrav->traverse(window->get_render());
     }
 }
 
@@ -172,7 +180,7 @@ void Game::toggle_cam(const Event* e, void *d){
     std::cout << "Entering POV: " << OTS_enabled << std::endl;
     switch(OTS_enabled){
         case 0: // OTS -> bird's eye
-            camera.set_pos(10, 1, 35);
+            camera.set_pos(10, 1, 300);
             camera.look_at(0, 0, 0);
             break;
         case 1: // bird's eye -> FP
