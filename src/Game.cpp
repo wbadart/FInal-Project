@@ -30,6 +30,7 @@ Game::Game(int argc_in, char *argv_in[], std::string window_name_in):
     // Init framework and open window
     
     jung = new Object();
+    maze = new Object();
 
     framework.open_framework(argc_in, argv_in);
     framework.set_window_title(window_name);
@@ -65,19 +66,21 @@ bool Game::open_window(void){
 void Game::init_models(void){
 
     // set up enviroment, aka the maze walls
-    env = load_model("models/Maze.egg");
-    PT(Texture) myTexture = TexturePool::load_texture("models/tex/wall.jpg");
-    PT(TextureStage) stage = TextureStage::get_default();
-    env.set_texture(myTexture);
-    env.set_tex_scale(stage, 3, 5);
-    env.reparent_to(window->get_render());
-    env.set_scale(10.25f, 10.25f, 10.25f);
-    env.set_pos(8, 22, 0);
+    maze->load("models/Maze.egg", &framework, window);
+    maze->load_tex("models/tex/wall.png");
+    maze->set_scale(10.25f, 10.25f, 10.25f);
+    maze->set_pos(8, 22, 0);
 
     // test object pointer
-    jung->load("environment");
+    jung->load("environment", &framework, window);
     jung->set_scale(2, 2, 2);
     jung->set_pos(8, 12, -0.38);
+
+    objs.push_back(new Bone);
+    for(auto i: objs){
+        i->load("models/bone.egg", &framework, window);
+        i->load_tex("models/tex/bone.png");
+    }
 
     // Load model, aka the dog
     pc = load_model("models/dog.egg");

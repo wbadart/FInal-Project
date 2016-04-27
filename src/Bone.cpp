@@ -1,14 +1,15 @@
 //implementation of Bone class
 
-#include "Object.h"
-#include "Bone.h"
+#include "Bone.hpp"
 
-Bone::Bone(): Object(5) {
-
+Bone::Bone(){
 
 }
 
 Bone::~Bone() {
 
-
 }
+
+// void Bone::load(void){
+//     load("models/bone.egg");
+// }

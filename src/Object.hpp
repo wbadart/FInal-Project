@@ -9,13 +9,11 @@
 #include <map>
 #include <vector>
 #include <pandaFramework.h>
+#include <texturePool.h>
 
-#include "Game.hpp"
-class Game;
 typedef std::map<std::string, std::vector<float>> confmap;
 
 class Object {
-    friend class Game;
 	public:
 		Object(int points_in = 0,
                std::string path_in = "",
@@ -23,7 +21,8 @@ class Object {
         Object(std::string);
 		~Object();
 
-        void load(std::string);
+        void load(std::string p, PandaFramework *f, WindowFramework *w);
+        void load_tex(std::string);
 
         void set_scale(float, float, float);
         void set_pos(float, float, float);
