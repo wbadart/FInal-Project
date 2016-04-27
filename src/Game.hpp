@@ -81,6 +81,7 @@ class Game{
 
         // Store the environment nodepath
         NodePath env;
+        NodePath jung;
         NodePath camera;
 
         int curRot;

@@ -66,6 +66,11 @@ void Game::init_models(void){
     env.set_pos(8, 22, 0);
     env.set_texture(myTexture);
 
+    jung = load_model("environment");
+    jung.reparent_to(window->get_render());
+    jung.set_scale(2, 2, 2);
+    jung.set_pos(8, 12, -0.38);
+
     // Load model, aka the dog
     pc = load_model("models/dog.egg");
     pc.set_scale(0.5);
@@ -90,9 +95,9 @@ void Game::init_models(void){
 	collTrav->traverse(window->get_render());
 //    }
     camera.reparent_to(pc);
-    camera.set_pos(18, 1, 8);
+    camera.set_pos(18, 1, 58);
     camera.look_at(0, 0, 0);
-    camera.set_p(0);
+    // camera.set_p(0);
 
     // Load animation
     window->loop_animations(0);
