@@ -67,7 +67,6 @@ class Game{
 	    // triggered when esc key is pressed, ends execution
         static void esc(const Event*, void*);
 
-
     private:
 
         // Tracks whether Game::open_window() has been called
