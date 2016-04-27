@@ -73,7 +73,7 @@ void Game::init_models(void){
     maze->set_pos(8, 22, 0);
 
     // test object pointer
-    jung->load("mazeironment", &framework, window);
+    jung->load("environment", &framework, window);
     jung->set_scale(2, 2, 2);
     jung->set_pos(8, 12, -0.38);
 
