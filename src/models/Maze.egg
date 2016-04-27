@@ -16,6 +16,7 @@
 }
 
   <Group> Labyrinth.001 {
+    <Collide> envCollision { polyset keep }
     <Transform> {
       <Matrix4> {
         1.0 0.0 0.0 0.0 
