@@ -12,6 +12,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <vector>
 
 // Panda framework should exist on CPATH or use gcc -I...
 // Or just use the makefile (be sure PANDA_CPATH and PANDA_LIB
@@ -34,6 +35,9 @@ class Game{
         // Overloaded constructor which automatically names window
         Game(int argc_in, char *argv_in[], std::string window_name_in);
 
+        // Deconstructor
+        ~Game();
+
         // Wrapper to PandaFramework::openwindow(); includes failure check
         bool open_window(void);
 
@@ -55,19 +59,22 @@ class Game{
         PandaFramework framework;
         WindowFramework *window;
 	
-	// Set function for player character
-        void setpc(NodePath);
-
         // Move the player character 
-	static void move_forward(const Event*, void*);
-	static void move_backward(const Event*, void*);
-	static void move_left(const Event*, void*);
-	static void move_right(const Event*, void*);
-	// triggered when esc key is pressed, ends execution
+	    static void move_forward(const Event*, void*);
+	    static void move_backward(const Event*, void*);
+	    static void move_left(const Event*, void*);
+	    static void move_right(const Event*, void*);
+
+	    // triggered when esc key is pressed, ends execution
         static void esc(const Event*, void*);
 
+        // toggle OTS and bird's eye POV
+        static void toggle_cam(const Event*, void*);
 
     private:
+        
+        // Tracks the current POV
+        static int OTS_enabled;
 
         // Tracks whether Game::open_window() has been called
         bool window_is_open;
@@ -81,9 +88,13 @@ class Game{
 
         // Store the environment nodepath
         NodePath env;
-        NodePath camera;
+        NodePath jung;
+        static NodePath camera;
 
         int curRot;
+
+        // Track allocated inervals
+        static std::vector<CMetaInterval*> intervals;
 };
 
 #endif
