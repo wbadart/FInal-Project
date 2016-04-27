@@ -26,6 +26,7 @@
 #include "collisionHandlerPusher.h"
 #include "collisionNode.h"
 #include "collisionSphere.h"
+#include "modelPool.h"
 
 class Object;
 
