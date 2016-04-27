@@ -75,13 +75,26 @@ void Game::init_keybindings(void){
 	//keyboard detection
 	framework.define_key("arrow_up-repeat", "move forward", move_forward, 0);
     framework.define_key("arrow_up", "move forward", move_forward, 0);
+    framework.define_key("w-repeat", "move forward", move_forward, 0);
+    framework.define_key("w", "move forward", move_forward, 0);
+
 	framework.define_key("arrow_down-repeat", "move backward", move_backward, 0);
     framework.define_key("arrow_down", "move backward", move_backward, 0);
+	framework.define_key("s-repeat", "move backward", move_backward, 0);
+    framework.define_key("s", "move backward", move_backward, 0);
+
 	framework.define_key("arrow_left-repeat", "move left", move_left, 0);
     framework.define_key("arrow_left", "move left", move_left, 0);
+	framework.define_key("a-repeat", "move left", move_left, 0);
+    framework.define_key("a", "move left", move_left, 0);
+
 	framework.define_key("arrow_right-repeat", "move right", move_right, 0);
     framework.define_key("arrow_right", "move right", move_right, 0);
+	framework.define_key("d-repeat", "move right", move_right, 0);
+    framework.define_key("d", "move right", move_right, 0);
+
 	framework.define_key("escape", "exit", esc, 0);
+	framework.define_key("q", "exit", esc, 0);
 }
 
 NodePath Game::load_model(char *model_name){
@@ -149,8 +162,8 @@ void Game::move_right(const Event* theEvent, void* data)
     PT(CLerpNodePathInterval) pandaHprInterval1;
     
     pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, pc);
-    pandaHprInterval1->set_start_hpr(LPoint3f(45, 0, 0));
-    pandaHprInterval1->set_end_hpr(LPoint3f(0, 0, 0));
+    pandaHprInterval1->set_start_hpr(LPoint3f(0, 0, 0));
+    pandaHprInterval1->set_end_hpr(LPoint3f(-45, 0, 0));
 
     PT(CMetaInterval) pandaPace;
     pandaPace = new CMetaInterval("pandaPace");
