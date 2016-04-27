@@ -102,6 +102,9 @@ class Game{
 
         int curRot;
 
+        // Track current score
+        unsigned int score;
+
         // Track allocated inervals
         static std::vector<CMetaInterval*> intervals;
 };
