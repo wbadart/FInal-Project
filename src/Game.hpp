@@ -40,6 +40,9 @@ class Game{
         // Setup keybindings
         void init_keybindings(void);
 
+        // Wrapper to PandaFramework::main_loop
+        void run(void);
+
         // Wrappers to WindowFramework::load_model
         NodePath load_model(char *model_name);
         NodePath load_model(std::string model_name);

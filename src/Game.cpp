@@ -82,6 +82,23 @@ void Game::init_models(void){
 
 }
 
+void Game::run(void){
+    PT(TextNode) text = new TextNode("timer");
+    NodePath text_node;
+    std::string time_string;
+    float time;
+
+    while(framework.do_frame(Thread::get_current_thread())){
+        time = ClockObject::get_global_clock()->get_frame_time();
+        time_string = "Time: " + std::to_string((int)time) + " seconds";
+
+        text->set_text(time_string);
+        text_node = window->get_aspect_2d().attach_new_node(text);
+        text_node.set_pos(0.95, 0, 0.9);
+        text_node.set_scale(0.05);
+    }
+}
+
 void Game::init_keybindings(void){
 	//keyboard detection
 	framework.define_key("arrow_up-repeat", "move forward", move_forward, 0);

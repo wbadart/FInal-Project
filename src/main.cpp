@@ -34,7 +34,7 @@ int main(int argc, char *argv[]){
         game.init_keybindings();
 
         // Start tasks and execute loop
-	    game.framework.main_loop();
+	    game.run();
 
     }else{
         std::cerr << "Could not load window\n";
