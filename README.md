@@ -1,9 +1,9 @@
 # Final-Project
 A 3D maze simulation.
 
-Cat Badart
-Will Badart
-Mara Staines
+Cat Badart,
+Will Badart,
+Mara Staines,
 Dan Wilborn
 
 
