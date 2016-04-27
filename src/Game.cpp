@@ -28,9 +28,6 @@ Game::Game(int argc_in, char *argv_in[], std::string window_name_in):
     framework.open_framework(argc_in, argv_in);
     framework.set_window_title(window_name);
     open_window();
-    camera = window->get_camera_group();
-    camera.reparent_to(window->get_render());
-    camera.set_pos(0, -3, 2);
     init_keybindings();
     init_models();
 }
@@ -53,8 +50,8 @@ bool Game::open_window(void){
 
     // Enable keyboard and camera control
     window->enable_keyboard();
-    // window->setup_trackball();
     
+    camera = window->get_camera_group();
     window_is_open = true;
     return true;
 }
@@ -177,7 +174,7 @@ void Game::toggle_cam(const Event* e, void *d){
             camera.look_at(0, 0, 0);
             break;
         case 1: // bird's eye -> FP
-            camera.set_pos(1, 1, 6.6);
+            camera.set_pos(2.1, 0, 7.6);
             camera.set_p(0);
             break;
         case 2: // FP -> OTS
