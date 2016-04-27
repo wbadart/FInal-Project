@@ -1,3 +1,6 @@
+//Chew Toy objects can be collected by the dog and add to your score
+//inherits from the Object class
+
 #ifndef CHEWTOY_H
 #define CHEWTOY_H
 
@@ -6,8 +9,8 @@
 class ChewToy: public Object {
 
 	public:
-		ChewToy();
-		~ChewToy();
+		ChewToy();	//constructor
+		~ChewToy();	//deconstructor
 	private:
 
 }

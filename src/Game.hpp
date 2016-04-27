@@ -48,16 +48,17 @@ class Game{
         // public, at least for the time being
         PandaFramework framework;
         WindowFramework *window;
-
-        // Set function for player character
+	
+	// Set function for player character
         void setpc(NodePath);
 
-        // Move a model
-	    static void move_forward(const Event*, void*);
-	    static void move_backward(const Event*, void*);
-	    static void move_left(const Event*, void*);
-	    static void move_right(const Event*, void*);
-	    static void esc(const Event*, void*);
+        // Move the player character 
+	static void move_forward(const Event*, void*);
+	static void move_backward(const Event*, void*);
+	static void move_left(const Event*, void*);
+	static void move_right(const Event*, void*);
+	// triggered when esc key is pressed, ends execution
+        static void esc(const Event*, void*);
 
 
     private:

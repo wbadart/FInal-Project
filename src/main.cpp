@@ -1,3 +1,5 @@
+// driver program for Game engine
+
 #include <iostream>
 
 #include "Game.hpp"
@@ -25,7 +27,7 @@ int main(int argc, char *argv[]){
     if(game.open_window()){
 
         camera = game.window->get_camera_group();
-        std::cout << "Successfully opened window\n";
+	std::cout << "Successfully opened window\n";
 
         // Load models
         game.init_models();
