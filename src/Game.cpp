@@ -7,10 +7,10 @@
  */
 
 #include "Game.hpp"
-#include "pandaFramework.h"
-#include "collisionHandlerPusher.h"
-#include "collisionNode.h"
-#include "collisionSphere.h"
+#include <pandaFramework.h>
+#include <collisionHandlerPusher.h>
+#include <collisionNode.h>
+#include <collisionSphere.h>
 
 Game::Game(int argc_in, char *argv_in[]):
         Game(argc_in, argv_in, "Default window name"){};
