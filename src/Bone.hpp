@@ -4,14 +4,20 @@
 #ifndef BONE_H
 #define BONE_H
 
-#include "Object.h"
+#include "Object.hpp"
+class Object;
 
 class Bone: public Object {
 
 	public:
 		Bone();		//constructor
 		~Bone();	//deconstructor	
-	private:
 
-}
+        // void load(void);
+
+	private:
+        
+
+};
+
 #endif

@@ -13,7 +13,6 @@
 #include <string>
 #include <vector>
 #include <map>
-#include "Object.hpp"
 
 // Panda framework should exist on CPATH or use gcc -I...
 // Or just use the makefile (be sure PANDA_CPATH and PANDA_LIB
@@ -28,7 +27,9 @@
 #include "collisionSphere.h"
 #include "modelPool.h"
 
+#include "Object.hpp"
 class Object;
+#include "Bone.hpp"
 
 class Game{
 
@@ -93,9 +94,10 @@ class Game{
         static NodePath pc;
 
         // Store the environment nodepath
-        NodePath env;
+        Object *maze;
         Object *jung;
         static NodePath camera;
+        std::vector<Object*> objs;
 
         int curRot;
 
