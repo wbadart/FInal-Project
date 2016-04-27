@@ -13,7 +13,8 @@ class Bone: public Object {
 		Bone();		//constructor
 		~Bone();	//deconstructor	
 
-        // void load(void);
+        void load(std::string p, PandaFramework *f,
+                WindowFramework *w);
 
 	private:
         

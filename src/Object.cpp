@@ -27,6 +27,10 @@ void Object::set_scale(float x, float y, float z){
     node.set_scale(x, y, z);
 }
 
+void Object::set_scale(float s){
+    node.set_scale(s, s, s);
+}
+
 void Object::set_pos(float x, float y, float z){
     node.set_pos(x, y, z);
 }

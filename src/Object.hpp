@@ -12,8 +12,10 @@
 #include <texturePool.h>
 
 typedef std::map<std::string, std::vector<float>> confmap;
+class Bone;
 
 class Object {
+    friend class Bone;
 	public:
 		Object(int points_in = 0,
                std::string path_in = "",
@@ -21,10 +23,11 @@ class Object {
         Object(std::string);
 		~Object();
 
-        void load(std::string p, PandaFramework *f, WindowFramework *w);
+        virtual void load(std::string p, PandaFramework *f, WindowFramework *w);
         void load_tex(std::string);
 
         void set_scale(float, float, float);
+        void set_scale(float);
         void set_pos(float, float, float);
         void set_p(float);
 

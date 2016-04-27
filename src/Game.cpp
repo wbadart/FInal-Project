@@ -76,11 +76,15 @@ void Game::init_models(void){
     jung->set_scale(2, 2, 2);
     jung->set_pos(8, 12, -0.38);
 
-    objs.push_back(new Bone);
-    for(auto i: objs){
-        i->load("models/bone.egg", &framework, window);
-        i->load_tex("models/tex/bone.png");
+    for(int i = 0; i < rand() % 5 + 2; i++){
+        objs.push_back(new Bone);
+        objs[i]->load("models/bone.egg", &framework, window);
+        objs[i]->set_scale(0.35);
+        objs[i]->set_pos(rand() % 24, rand() % 24, 2);
+        objs[i]->set_p((rand() % 45) + 15);
     }
+
+    objs.push_back(new Bone);
 
     // Load model, aka the dog
     pc = load_model("models/dog.egg");
