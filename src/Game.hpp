@@ -11,8 +11,9 @@
 
 #include <iostream>
 #include <string>
-#include <cstdlib>
 #include <vector>
+#include <map>
+#include "Object.hpp"
 
 // Panda framework should exist on CPATH or use gcc -I...
 // Or just use the makefile (be sure PANDA_CPATH and PANDA_LIB
@@ -26,7 +27,12 @@
 #include "collisionNode.h"
 #include "collisionSphere.h"
 
+class Object;
+
 class Game{
+
+    friend class Object;
+
     public:
 
         // Primary constructor; able to use command line arguments
@@ -51,13 +57,12 @@ class Game{
         void run(void);
 
         // Wrappers to WindowFramework::load_model
-        NodePath load_model(char *model_name);
-        NodePath load_model(std::string model_name);
+        static NodePath load_model(std::string model_name);
 
         // Frequently accessed data members; much more efficient to make
         // public, at least for the time being
-        PandaFramework framework;
-        WindowFramework *window;
+        static PandaFramework framework;
+        static WindowFramework *window;
 	
         // Move the player character 
 	    static void move_forward(const Event*, void*);
@@ -77,7 +82,7 @@ class Game{
         static int OTS_enabled;
 
         // Tracks whether Game::open_window() has been called
-        bool window_is_open;
+        static bool window_is_open;
 
         // Stores the name of the window
         std::string window_name;
@@ -88,7 +93,7 @@ class Game{
 
         // Store the environment nodepath
         NodePath env;
-        NodePath jung;
+        Object *jung;
         static NodePath camera;
 
         int curRot;

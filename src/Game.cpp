@@ -15,6 +15,9 @@
 NodePath Game::pc = NodePath();
 NodePath Game::camera = NodePath();
 int      Game::OTS_enabled = 0;
+bool     Game::window_is_open = false;
+WindowFramework *Game::window;
+PandaFramework   Game::framework;
 
 std::vector<CMetaInterval*> Game::intervals = std::vector<CMetaInterval*>();
 
@@ -22,9 +25,12 @@ Game::Game(int argc_in, char *argv_in[]):
         Game(argc_in, argv_in, "Default window name"){};
 
 Game::Game(int argc_in, char *argv_in[], std::string window_name_in):
-        framework(), window_is_open(false), window_name(window_name_in){
+        window_name(window_name_in){
 
     // Init framework and open window
+    
+    jung = new Object();
+
     framework.open_framework(argc_in, argv_in);
     framework.set_window_title(window_name);
     open_window();
@@ -70,10 +76,10 @@ void Game::init_models(void){
     env.set_scale(10.25f, 10.25f, 10.25f);
     env.set_pos(8, 22, 0);
 
-    jung = load_model("environment");
-    jung.reparent_to(window->get_render());
-    jung.set_scale(2, 2, 2);
-    jung.set_pos(8, 12, -0.38);
+    // test object pointer
+    jung->load("environment");
+    jung->set_scale(2, 2, 2);
+    jung->set_pos(8, 12, -0.38);
 
     // Load model, aka the dog
     pc = load_model("models/dog.egg");
@@ -126,15 +132,11 @@ void Game::run(void){
 }
 
 //Wrappers to WindowFramework::load_model
-NodePath Game::load_model(char *model_name){
+NodePath Game::load_model(std::string model_name){
     if(window_is_open)
-        return window->load_model(framework.get_models(), model_name);
+        return window->load_model(framework.get_models(), model_name.c_str());
     else
         return NodePath();
-}
-
-NodePath Game::load_model(std::string model_name){
-    return load_model(model_name.c_str());
 }
 
 //keyboard detection for game controls: 4 arrow keys and esc
