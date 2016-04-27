@@ -13,6 +13,9 @@
 #include <collisionSphere.h>
 
 NodePath Game::pc = NodePath();
+NodePath Game::camera = NodePath();
+int      Game::OTS_enabled = 0;
+
 std::vector<CMetaInterval*> Game::intervals = std::vector<CMetaInterval*>();
 
 Game::Game(int argc_in, char *argv_in[]):
@@ -95,9 +98,9 @@ void Game::init_models(void){
 	collTrav->traverse(window->get_render());
 //    }
     camera.reparent_to(pc);
-    camera.set_pos(18, 1, 58);
+    camera.set_pos(18, 1, 8);
     camera.look_at(0, 0, 0);
-    // camera.set_p(0);
+    camera.set_p(0);
 
     // Load animation
     window->loop_animations(0);
@@ -156,6 +159,28 @@ void Game::init_keybindings(void){
 
 	framework.define_key("escape", "exit", esc, 0);
 	framework.define_key("q", "exit", esc, 0);
+
+    framework.define_key("o", "toggle cam", toggle_cam, 0);
+}
+
+// Cycle through OTS->bird's eye->FP
+void Game::toggle_cam(const Event* e, void *d){
+    std::cout << "Entering POV: " << OTS_enabled << std::endl;
+    switch(OTS_enabled){
+        case 0: // OTS -> bird's eye
+            camera.set_pos(18, 1, 58);
+            camera.look_at(0, 0, 0);
+            break;
+        case 1: // bird's eye -> FP
+            camera.set_pos(1, 1, 6.6);
+            camera.set_p(0);
+            break;
+        case 2: // FP -> OTS
+            camera.set_pos(18, 1, 8);
+            camera.look_at(0, 0, 0);
+            camera.set_p(0);
+    }
+    OTS_enabled = (OTS_enabled + 1) % 3;
 }
 
 // Movement functions for the 4 arrow keys
