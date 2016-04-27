@@ -7,6 +7,10 @@
  */
 
 #include "Game.hpp"
+#include "pandaFramework.h"
+#include "collisionHandlerPusher.h"
+#include "collisionNode.h"
+#include "collisionSphere.h"
 
 Game::Game(int argc_in, char *argv_in[]):
         Game(argc_in, argv_in, "Default window name"){};
@@ -56,6 +60,23 @@ void Game::init_models(void){
     pc.reparent_to(window->get_render());
     window->load_model(pc, "models/dog-Anim0.egg");
 
+    //Collision Detection
+    CollisionNode* cNode = new CollisionNode("pc");
+    cNode->add_solid(new CollisionSphere(0,0,0,1.0));
+    NodePath pcC = pc.attach_new_node(cNode);
+    cNode = new CollisionNode("env");
+    cNode->add_solid(new CollisionSphere(0,0,0,1.0));
+    NodePath envC = env.attach_new_node(cNode);
+    CollisionHandlerPusher pusher;
+    CollisionTraverser* collTrav = new CollisionTraverser();
+    pusher.add_collider(pcC, pc);
+    collTrav->add_collider(pcC, &pusher);
+    Thread *current_thread = Thread::get_current_thread();
+//    while(framework.do_frame(current_thread))
+//    {
+	//check collisions
+	collTrav->traverse(window->get_render());
+//    }
     // Load animation
     window->loop_animations(0);
 

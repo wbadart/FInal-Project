@@ -18,6 +18,9 @@
 // environment variables are up to date for this)
 #include <pandaFramework.h>
 #include <texturePool.h>
+#include "collisionHandlerPusher.h"
+#include "collisionNode.h"
+#include "collisionSphere.h"
 
 class Game{
     public:
