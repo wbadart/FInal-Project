@@ -29,8 +29,7 @@ Overarching our code is the main.cpp file. Originally, this file contained a lar
 
 The base class, Game, contains much of the overarching panda3D code. This includes opening the window, bringing in models, moving the dog character, collision detection, and the camera. The Game class also runs the game.
 
-From the base class, we then created an Object class. This is the base class from which all collectable objects would come from. It is fairly simple, containing a points data member. This also included a getPoints() function.
-
+From the base class, we then created an Object class. This is the base class from which all collectable objects would come from. It is fairly simple, containing a points data member, a getPoints() function, and a draw() function.
 
 
 **Libraries/Header files** :  *within /built/lib and /built/include*
@@ -44,11 +43,11 @@ libp3tinydisplay.so.1.9 : Renders panda3D software.
 libpandagl.so : Renders panda3D openGL
  
 
-pandaFramework.h :
+pandaFramework.h : Similar to the libp3framework library, it is essential for panda3D usage with C++.
 
-texturePool.h :
+texturePool.h : Needed to import and create visual textures we see on screen.
 
-collisionNode.h :
+collisionNode.h : Brings in and declares various functions used in collision detection.
 
 
 
