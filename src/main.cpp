@@ -1,3 +1,5 @@
+// driver program for Game engine
+
 #include <iostream>
 
 #include "Game.hpp"
@@ -20,7 +22,7 @@ int main(int argc, char *argv[]){
 
     // Open window
     Game game(argc, argv);
-
+    
     //Close down
     game.framework.close_framework();
     return 0;

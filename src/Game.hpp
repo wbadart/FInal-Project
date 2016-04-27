@@ -21,6 +21,9 @@
 #include <cIntervalManager.h>
 #include <cLerpNodePathInterval.h>
 #include <cMetaInterval.h>
+#include "collisionHandlerPusher.h"
+#include "collisionNode.h"
+#include "collisionSphere.h"
 
 class Game{
     public:
@@ -40,6 +43,9 @@ class Game{
         // Setup keybindings
         void init_keybindings(void);
 
+        // Wrapper to PandaFramework::main_loop
+        void run(void);
+
         // Wrappers to WindowFramework::load_model
         NodePath load_model(char *model_name);
         NodePath load_model(std::string model_name);
@@ -48,16 +54,17 @@ class Game{
         // public, at least for the time being
         PandaFramework framework;
         WindowFramework *window;
-
-        // Set function for player character
+	
+	// Set function for player character
         void setpc(NodePath);
 
-        // Move a model
-	    static void move_forward(const Event*, void*);
-	    static void move_backward(const Event*, void*);
-	    static void move_left(const Event*, void*);
-	    static void move_right(const Event*, void*);
-	    static void esc(const Event*, void*);
+        // Move the player character 
+	static void move_forward(const Event*, void*);
+	static void move_backward(const Event*, void*);
+	static void move_left(const Event*, void*);
+	static void move_right(const Event*, void*);
+	// triggered when esc key is pressed, ends execution
+        static void esc(const Event*, void*);
 
 
     private:

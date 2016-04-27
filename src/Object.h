@@ -13,7 +13,6 @@ class Object {
 		Object(int);
 		~Object();
 		int getPoints();
-		int isCollision();	//returns 1 if there is a collision
 		virtual void draw();	//draw function
 	private:
 		int points;

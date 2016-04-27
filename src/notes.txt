@@ -1,0 +1,32 @@
+Wall Collision Detection:
+-------------------------
+Use CollisonHandlerPusher
+pc is player character aka dog, NodePath Object
+env is the walls, also a NodePath Object
+
+pc = window->load_model(framework.get_models(), "models/dog-Anim0.egg");
+env = load_model("models/Maze.egg");
+
+fromObject = pc.attach_new_node(CollisionNode("colNode"));
+fromObject->add_solid(CollisionSphere(0,0,0,1));
+
+pusher = new CollisionHandlerPusher();
+pusher.add_collider(fromObject, pc):
+
+CollisionTraverser traverser.add_collider(fromObject, pusher);
+pc->set_pos(x,y,0);
+
+//using drive mode?
+fromObject = cam.attach_new_node(CollisionNode("colNode"));
+fromObject->node().add_solid(CollisionSphere(0,0,0,1);
+pusher = new CollisionHandlerPusher();
+pusher.add_collider(fromObject, cam);
+
+Pick Up Obejects Collision Detection:
+-------------------------------------
+Use CollisionHandlerEvent
+interested in "in" event, are "out" and "again" necessary if object disappears when dog runs into it?
+pc = fromObject
+bone, toy, vacuum, shampoo = into Objects
+c_handler.add_in_pattern("pc-into-bone");
+CollisionEntry object stores the 2 objects involved in collision and point of impact and surface of into object

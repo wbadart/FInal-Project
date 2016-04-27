@@ -7,7 +7,13 @@
  */
 
 #include "Game.hpp"
+#include <pandaFramework.h>
+#include <collisionHandlerPusher.h>
+#include <collisionNode.h>
+#include <collisionSphere.h>
+
 NodePath Game::pc = NodePath();
+
 Game::Game(int argc_in, char *argv_in[]):
         Game(argc_in, argv_in, "Default window name"){};
 
@@ -45,10 +51,7 @@ bool Game::open_window(void){
 
 void Game::init_models(void){
 
-    /*NodePath scene = load_model("environment");
-    scene.reparent_to(window->get_render());
-    scene.set_scale(0.35f, 0.35f, 0.35f);
-    scene.set_pos(8, 22, 0); */
+    // set up enviroment, aka the maze walls
     env = load_model("models/Maze.egg");
     PT(Texture) myTexture = TexturePool::load_texture("models/tex/wall.jpg");
     env.reparent_to(window->get_render());
@@ -56,18 +59,52 @@ void Game::init_models(void){
     env.set_pos(8, 22, 0);
     env.set_texture(myTexture);
 
-    // Load model
+    // Load model, aka the dog
     pc = load_model("models/dog.egg");
     pc.set_scale(0.5);
     pc.reparent_to(window->get_render());
     window->load_model(pc, "models/dog-Anim0.egg");
 
+    //Collision Detection
+    CollisionNode* cNode = new CollisionNode("pc");
+    cNode->add_solid(new CollisionSphere(0,0,0,1.0));
+    NodePath pcC = pc.attach_new_node(cNode);
+    cNode = new CollisionNode("env");
+    cNode->add_solid(new CollisionSphere(0,0,0,1.0));
+    NodePath envC = env.attach_new_node(cNode);
+    CollisionHandlerPusher pusher;
+    CollisionTraverser* collTrav = new CollisionTraverser();
+    pusher.add_collider(pcC, pc);
+    collTrav->add_collider(pcC, &pusher);
+    Thread *current_thread = Thread::get_current_thread();
+//    while(framework.do_frame(current_thread))
+//    {
+	//check collisions
+	collTrav->traverse(window->get_render());
+//    }
     // Load animation
     window->loop_animations(0);
 }
 
+void Game::run(void){
+    PT(TextNode) text = new TextNode("timer");
+    NodePath text_node;
+    std::string time_string;
+    float time;
+
+    while(framework.do_frame(Thread::get_current_thread())){
+        time = ClockObject::get_global_clock()->get_frame_time();
+        time_string = "Time: " + std::to_string((int)time) + " seconds";
+
+        text->set_text(time_string);
+        text_node = window->get_aspect_2d().attach_new_node(text);
+        text_node.set_pos(0.95, 0, 0.9);
+        text_node.set_scale(0.05);
+    }
+}
+
 void Game::init_keybindings(void){
-	//keyboard detection
+	//keyboard detection for game controls: 4 arrow keys and esc
 	framework.define_key("arrow_up-repeat", "move forward", move_forward, 0);
     framework.define_key("arrow_up", "move forward", move_forward, 0);
 	framework.define_key("arrow_down-repeat", "move backward", move_backward, 0);
@@ -79,6 +116,7 @@ void Game::init_keybindings(void){
 	framework.define_key("escape", "exit", esc, 0);
 }
 
+//Wrappers to WindowFramework::load_model
 NodePath Game::load_model(char *model_name){
     if(window_is_open)
         return window->load_model(framework.get_models(), model_name);
@@ -89,14 +127,13 @@ NodePath Game::load_model(char *model_name){
 NodePath Game::load_model(std::string model_name){
     return load_model(model_name.c_str());
 }
-
+// set player character
 void Game::setpc(NodePath pc_in){
     pc = pc_in;
 }
-
+// Movement functions for the 4 arrow keys
 void Game::move_forward(const Event* theEvent, void* data)
 {
-    std:: cout << "You pressed the up arrow\n";
     PT(CLerpNodePathInterval) pandaHprInterval1;
 
     pandaHprInterval1 = new CLerpNodePathInterval("pandaHprInterval1", 3.0, CLerpInterval::BT_no_blend, true, false, pc, pc);
@@ -107,6 +144,9 @@ void Game::move_forward(const Event* theEvent, void* data)
     pandaPace = new CMetaInterval("pandaPace");
     pandaPace->add_c_interval(pandaHprInterval1, 0, CMetaInterval::RS_previous_end);
     pandaPace->start();
+
+   //used for debugging
+   std:: cout << "You pressed the up arrow\n";
 }
 
 void Game::move_backward(const Event* theEvent, void* data)
@@ -152,9 +192,10 @@ void Game::move_right(const Event* theEvent, void* data)
     pandaPace->add_c_interval(pandaHprInterval1, 0, CMetaInterval::RS_previous_end);
     pandaPace->start();
 }
+// hitting the esc key ends the execution
 void Game::esc(const Event* theEvent, void* data)
 {
-	std::cout << "Exit\n";
-	exit(0);
+    std::cout << "Exit\n";
+    exit(0);
 }
 
