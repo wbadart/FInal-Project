@@ -7,7 +7,7 @@
  */
 
 #include "Game.hpp"
-pc = new NodePath;
+NodePath Game::pc = NodePath();
 Game::Game(int argc_in, char *argv_in[]):
         Game(argc_in, argv_in, "Default window name"){};
 
@@ -101,7 +101,6 @@ void Game::move_forward(const Event* theEvent, void* data)
     pandaPace = new CMetaInterval("pandaPace");
     pandaPace->add_c_interval(pandaHprInterval1, 0, CMetaInterval::RS_previous_end);
     pandaPace->start();
-}
 }
 
 void Game::move_backward(const Event* theEvent, void* data)
