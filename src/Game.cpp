@@ -66,14 +66,14 @@ bool Game::open_window(void){
 
 void Game::init_models(void){
 
-    // set up enviroment, aka the maze walls
+    // set up mazeiroment, aka the maze walls
     maze->load("models/Maze.egg", &framework, window);
     maze->load_tex("models/tex/wall.png");
     maze->set_scale(10.25f, 10.25f, 10.25f);
     maze->set_pos(8, 22, 0);
 
     // test object pointer
-    jung->load("environment", &framework, window);
+    jung->load("mazeironment", &framework, window);
     jung->set_scale(2, 2, 2);
     jung->set_pos(8, 12, -0.38);
 
@@ -124,9 +124,9 @@ void Game::run(void){
     cNode->add_solid(new CollisionBox(LPoint3f(-2.0, 1.5, 0), 0.06, 0.5, 1.0)); //e
     cNode->add_solid(new CollisionBox(LPoint3f(0, 2.0, 0), 2, 0.06 , 1.0)); //f
     cNode->add_solid(new CollisionBox(LPoint3f(2.0, 0.6, 0), 0.06, 1.5 , 1.0)); //g
-    cNode->add_solid(new CollisionBox(LPoint3f(0.65, -0.85, 0), 0.5, 0.06 , 1.0)); //h
-    NodePath envC = env.attach_new_node(cNode);
-    envC.show();
+    cNode->add_solid(new CollisionBox(LPoint3f(0.60, -0.1, 0), 0.5, 0.06 , 1.0)); //h
+    NodePath mazeC = maze.attach_new_node(cNode);
+    mazeC.show();
     pusher.add_collider(pcC, pc);
     collTrav->add_collider(pcC, &pusher);
     //Thread *current_thread = Thread::get_current_thread();
