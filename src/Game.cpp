@@ -33,8 +33,6 @@ Game::Game(int argc_in, char *argv_in[], std::string window_name_in):
     camera.set_pos(0, -3, 2);
     init_keybindings();
     init_models();
-    run();
-    framework.main_loop();
 }
 
 Game::~Game(){
