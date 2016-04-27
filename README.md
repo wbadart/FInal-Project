@@ -69,12 +69,6 @@ Once the program is up and running, the game is very straight-forward. The user 
 
 
 
+#### A note to evaluators:
 
-
-
-
-
-
-
-
-
+For the first several weeks of development, team members Cat, Dan, and Mara didn't have their local git configurations linked to their email addresses. For this reason, many of the Github generated statistics about contributions are inaccurate. Please review the commit log directly if you wish to verify the even distribution of effort across team members.  Thank you!
