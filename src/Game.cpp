@@ -64,10 +64,14 @@ void Game::init_models(void){
     // set up enviroment, aka the maze walls
     env = load_model("models/Maze.egg");
     PT(Texture) myTexture = TexturePool::load_texture("models/tex/wall.jpg");
+
+    PT(TextureStage) stage = TextureStage::get_default();
+    env.set_texture(myTexture);
+    env.set_tex_scale(stage, 3, 5);
+
     env.reparent_to(window->get_render());
     env.set_scale(10.25f, 10.25f, 10.25f);
     env.set_pos(8, 22, 0);
-    env.set_texture(myTexture);
 
     jung = load_model("environment");
     jung.reparent_to(window->get_render());
