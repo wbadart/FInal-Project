@@ -172,7 +172,7 @@ void Game::toggle_cam(const Event* e, void *d){
     std::cout << "Entering POV: " << OTS_enabled << std::endl;
     switch(OTS_enabled){
         case 0: // OTS -> bird's eye
-            camera.set_pos(18, 1, 58);
+            camera.set_pos(10, 1, 35);
             camera.look_at(0, 0, 0);
             break;
         case 1: // bird's eye -> FP
