@@ -29,7 +29,9 @@ Overarching our code is the main.cpp file. Originally, this file contained a lar
 
 The base class, Game, contains much of the overarching panda3D code. This includes opening the window, bringing in models, moving the dog character, collision detection, and the camera. The Game class also runs the game.
 
-From the base class, we then created an Object class. This is the base class from which all collectable objects would come from. It is fairly simple, containing a points data member, a getPoints() function, and a draw() function.
+From the base class, we then created an Object class. This is the base class from which all collectable objects would come from. The Object class includes a load function, a set scale function, a set position function, and a function (set_p) for setting the angle of the object. There is also a get points function and set points function. The data members include the points, the path, and the node. 
+
+Interestingly, our Object class and Game class are intertwined in the sense that the Game class is referenced in Object. This allows us to call two of the member functions located in Game from within the Object class. Overall, Object is used within Game in a composition method. We use pointers to Object because Game is referenced in Object, so Game must be created for Object to exist. In a similar way, Object must be created for Game to exist. By using pointers, we do not have to allocate a specific amount of memory for the Object class within Game.
 
 
 **Libraries/Header files** :  *within /built/lib and /built/include*
@@ -40,7 +42,7 @@ libp3framework.so.1.9 : Important for panda3D usage with C++, essential when try
 
 libp3tinydisplay.so.1.9 : Renders panda3D software.
 
-libpandagl.so : Renders panda3D openGL
+libpandagl.so : Renders panda3D, specifcally openGL portion.
  
 
 pandaFramework.h : Similar to the libp3framework library, it is essential for panda3D usage with C++.
@@ -58,7 +60,7 @@ For the ease of the both the programmer and the user, the program is compiled wi
 
 **User Manual**
 
-Once the program is up and running, the game is very straight-forward. The user can use either the arrow keys or WASD to move the dog through the maze, collecting bones/chew toys along the way while avoiding vacuums/shampoo. To change the POV, the user can press 'o'. The goal is to reach the end of the maze and both a score and time elapsed are recorded.
+Once the program is up and running, the game is very straight-forward. The user can use either the arrow keys or WASD to move the dog through the maze, collecting bones/chew toys along the way while avoiding vacuums/shampoo. To change the POV, the user can press 'o'. To exit the program, the user can press 'Esc'. The goal is to reach the end of the maze and both a score and time elapsed are recorded.
 
 
 **Known Bugs**
