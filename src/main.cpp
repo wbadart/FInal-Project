@@ -22,8 +22,7 @@ int main(int argc, char *argv[]){
 
     // Open window
     Game game(argc, argv);
+    game.run();
     
-    //Close down
-    game.framework.close_framework();
     return 0;
 }

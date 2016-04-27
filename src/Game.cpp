@@ -13,6 +13,7 @@
 #include <collisionSphere.h>
 
 NodePath Game::pc = NodePath();
+std::vector<CMetaInterval*> Game::intervals = std::vector<CMetaInterval*>();
 
 Game::Game(int argc_in, char *argv_in[]):
         Game(argc_in, argv_in, "Default window name"){};
@@ -29,7 +30,13 @@ Game::Game(int argc_in, char *argv_in[], std::string window_name_in):
     camera.set_pos(0, -3, 2);
     init_keybindings();
     init_models();
-    framework.main_loop();
+}
+
+Game::~Game(){
+    framework.close_framework();
+
+    for(auto it = intervals.begin(); it != intervals.end(); it++)
+        delete *it;
 }
 
 bool Game::open_window(void){
@@ -38,7 +45,7 @@ bool Game::open_window(void){
     window = framework.open_window();
     if(window == (WindowFramework *) NULL){
         std::cerr << "Unable to open window.\n";
-        return false;;
+        return false;
     }
 
     // Enable keyboard and camera control
@@ -46,7 +53,7 @@ bool Game::open_window(void){
     // window->setup_trackball();
     
     window_is_open = true;
-    return true;;
+    return true;
 }
 
 void Game::init_models(void){
@@ -108,8 +115,20 @@ void Game::run(void){
     }
 }
 
+//Wrappers to WindowFramework::load_model
+NodePath Game::load_model(char *model_name){
+    if(window_is_open)
+        return window->load_model(framework.get_models(), model_name);
+    else
+        return NodePath();
+}
+
+NodePath Game::load_model(std::string model_name){
+    return load_model(model_name.c_str());
+}
+
+//keyboard detection for game controls: 4 arrow keys and esc
 void Game::init_keybindings(void){
-	//keyboard detection for game controls: 4 arrow keys and esc
 	framework.define_key("arrow_up-repeat", "move forward", move_forward, 0);
     framework.define_key("arrow_up", "move forward", move_forward, 0);
     framework.define_key("w-repeat", "move forward", move_forward, 0);
@@ -134,21 +153,6 @@ void Game::init_keybindings(void){
 	framework.define_key("q", "exit", esc, 0);
 }
 
-//Wrappers to WindowFramework::load_model
-NodePath Game::load_model(char *model_name){
-    if(window_is_open)
-        return window->load_model(framework.get_models(), model_name);
-    else
-        return NodePath();
-}
-
-NodePath Game::load_model(std::string model_name){
-    return load_model(model_name.c_str());
-}
-// set player character
-void Game::setpc(NodePath pc_in){
-    pc = pc_in;
-}
 // Movement functions for the 4 arrow keys
 void Game::move_forward(const Event* theEvent, void* data)
 {
@@ -162,6 +166,8 @@ void Game::move_forward(const Event* theEvent, void* data)
     pandaPace = new CMetaInterval("pandaPace");
     pandaPace->add_c_interval(pandaHprInterval1, 0, CMetaInterval::RS_previous_end);
     pandaPace->start();
+
+    intervals.push_back(pandaPace);
 
    //used for debugging
    std:: cout << "You pressed the up arrow\n";
@@ -180,6 +186,8 @@ void Game::move_backward(const Event* theEvent, void* data)
     pandaPace = new CMetaInterval("pandaPace");
     pandaPace->add_c_interval(pandaHprInterval1, 0, CMetaInterval::RS_previous_end);
     pandaPace->start();
+
+    intervals.push_back(pandaPace);
 }
 
 void Game::move_left(const Event* theEvent, void* data)
@@ -195,6 +203,8 @@ void Game::move_left(const Event* theEvent, void* data)
     pandaPace = new CMetaInterval("pandaPace");
     pandaPace->add_c_interval(pandaHprInterval1, 0, CMetaInterval::RS_previous_end);
     pandaPace->start();
+
+    intervals.push_back(pandaPace);
 }
 
 void Game::move_right(const Event* theEvent, void* data)
@@ -210,6 +220,8 @@ void Game::move_right(const Event* theEvent, void* data)
     pandaPace = new CMetaInterval("pandaPace");
     pandaPace->add_c_interval(pandaHprInterval1, 0, CMetaInterval::RS_previous_end);
     pandaPace->start();
+
+    intervals.push_back(pandaPace);
 }
 // hitting the esc key ends the execution
 void Game::esc(const Event* theEvent, void* data)
