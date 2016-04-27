@@ -13,8 +13,10 @@
 
 typedef std::map<std::string, std::vector<float>> confmap;
 class Bone;
+class Game;
 
 class Object {
+    friend class Game;
     friend class Bone;
 	public:
 		Object(int points_in = 0,

@@ -129,7 +129,7 @@ void Game::run(void){
     cNode->add_solid(new CollisionBox(LPoint3f(0, 2.0, 0), 2, 0.06 , 1.0)); //f
     cNode->add_solid(new CollisionBox(LPoint3f(2.0, 0.6, 0), 0.06, 1.5 , 1.0)); //g
     cNode->add_solid(new CollisionBox(LPoint3f(0.60, -0.1, 0), 0.5, 0.06 , 1.0)); //h
-    NodePath mazeC = maze.attach_new_node(cNode);
+    NodePath mazeC = maze->node.attach_new_node(cNode);
     mazeC.show();
     pusher.add_collider(pcC, pc);
     collTrav->add_collider(pcC, &pusher);
