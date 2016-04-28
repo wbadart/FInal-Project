@@ -252,7 +252,7 @@ void Game::init_keybindings(void){
 
     framework.define_key("o", "toggle cam", toggle_cam, 0);
 
-	framework.define_key("t", "end Game", endGame, 0);
+	// framework.define_key("t", "end Game", endGame, 0);
 }
 
 // Cycle through OTS->bird's eye->FP
