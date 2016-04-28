@@ -82,6 +82,7 @@ class Game{
 
         // toggle OTS and bird's eye POV
         static void toggle_cam(const Event*, void*);
+        static void set_POV(int pov_id);
 
     private:
         
