@@ -17,9 +17,9 @@ void Object::load(std::string p, PandaFramework *f, WindowFramework *w){
 }
 
 void Object::load_tex(std::string p){
-    PT(Texture) myTexture = TexturePool::load_texture(p.c_str());
-    PT(TextureStage) stage = TextureStage::get_default();
-    node.set_texture(myTexture);
+    texture = TexturePool::load_texture(p.c_str());
+    stage = TextureStage::get_default();
+    node.set_texture(texture);
     node.set_tex_scale(stage, 3, 5);
 }
 

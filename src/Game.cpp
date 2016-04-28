@@ -26,7 +26,7 @@ Game::Game(int argc_in, char *argv_in[]):
         Game(argc_in, argv_in, "Default window name"){};
 
 Game::Game(int argc_in, char *argv_in[], std::string window_name_in):
-        window_name(window_name_in){
+        window_name(window_name_in), score(0){
 
     // Init framework and open window
     
@@ -77,15 +77,7 @@ void Game::init_models(void){
     jung->set_scale(2, 2, 2);
     jung->set_pos(8, 12, -0.38);
 
-    for(int i = 0; i < rand() % 5 + 2; i++){
-        objs.push_back(new Bone);
-        objs[i]->load("models/bone.egg", &framework, window);
-        objs[i]->set_scale(0.35);
-        objs[i]->set_pos(rand() % 24, rand() % 24, 2);
-        objs[i]->set_p((rand() % 45) + 15);
-    }
-
-    objs.push_back(new Bone);
+    gen_objects();
 
     // Load model, aka the dog
     pc = load_model("models/dog.egg");
@@ -106,10 +98,29 @@ void Game::init_models(void){
     window->loop_animations(0);
 }
 
+void Game::gen_objects(void){
+    int num_objs = rand() % 6 + 2;
+    for(int i = 0; i < num_objs * 2; i++){
+        objs.push_back(new Bone);
+        objs[i]->load("models/bone.egg", &framework, window);
+        objs[i]->set_scale(0.35);
+        objs[i]->set_pos(rand() % 24, rand() % 24, 2);
+        objs[i]->set_p((rand() % 45) + 15);
+
+        i++;
+        
+        objs.push_back(new Shampoo);
+        objs[i]->load("models/shampoo.egg", &framework, window);
+        objs[i]->set_scale(0.15);
+        objs[i]->set_pos(rand() % 24, rand() % 24, 2);
+        objs[i]->set_p((rand() % 45) + 15);
+    }
+}
+
 void Game::run(void){
     PT(TextNode) text = new TextNode("timer");
     NodePath text_node;
-    std::string time_string;
+    std::string msg;
     float time;
     //Collision Detection
     CollisionTraverser* collTrav = new CollisionTraverser();
@@ -131,6 +142,12 @@ void Game::run(void){
     cNode->add_solid(new CollisionBox(LPoint3f(1.0, -0.55, 0), 0.06, 1.5 , 1.0)); //i
     cNode->add_solid(new CollisionBox(LPoint3f(-0.45, 0.95, 0), 0.5, 0.06 , 1.0)); //j
     cNode->add_solid(new CollisionBox(LPoint3f(0.0, 0.0, 0), 0.06, 1.0 , 1.0)); //k
+    cNode->add_solid(new CollisionBox(LPoint3f(-2.5, 0, 0), 0.5, 0.06 , 1.0)); //h
+    cNode->add_solid(new CollisionBox(LPoint3f(0, -1.0, 0), 2.1, 0.06 , 1.0)); //l
+    cNode->add_solid(new CollisionBox(LPoint3f(-2.0, -1.5, 0), 0.06, 0.5, 1.0)); //m
+    cNode->add_solid(new CollisionBox(LPoint3f(0, -2.0, 0), 1.1, 0.06 , 1.0)); //n
+    cNode->add_solid(new CollisionBox(LPoint3f(-1.0, -2.5, 0), 0.06, 0.5, 1.0)); //o    
+    cNode->add_solid(new CollisionBox(LPoint3f(2.0, -2.5, 0), 0.06, 0.5, 1.0)); //p
 
     NodePath mazeC = maze->node.attach_new_node(cNode);
     mazeC.show();
@@ -140,8 +157,8 @@ void Game::run(void){
 
     while(framework.do_frame(Thread::get_current_thread())){
         time = ClockObject::get_global_clock()->get_frame_time();
-        time_string = "Time: " + std::to_string((int)time) + " seconds";
-        text->set_text(time_string);
+        msg = "Time: " + std::to_string((int)time) + " seconds\nScore: " + std::to_string(score);
+        text->set_text(msg);
         text_node = window->get_aspect_2d().attach_new_node(text);
         text_node.set_pos(0.95, 0, 0.9);
         text_node.set_scale(0.05);
