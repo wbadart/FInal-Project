@@ -9,6 +9,8 @@ Dan Wilborn
 
 *Project log can be found at*: https://docs.google.com/spreadsheets/d/1GxqNj7XqEiN0hS3hg-xIgdq8dVjda9YKXLhBy6NUcfU/edit#gid=0
 
+*Team meeting descripts (more detail)*: https://docs.google.com/document/d/16bwAEJMZ0qg0G66HvHHsSY0q0C9MV2ztJ7Bh--Ex8tg/edit
+
 
 *Git repository can be found at*: https://github.com/wbadart/Final-Project
 
@@ -64,12 +66,12 @@ For the ease of the both the programmer and the user, the program is compiled wi
 
 **User Manual**
 
-Once the program is up and running, the game is very straight-forward. The user can use either the arrow keys or WASD to move the dog through the maze, collecting bones/chew toys along the way while avoiding vacuums/shampoo. To change the POV, the user can press 'o'. To exit the program, the user can press 'Esc'. The goal is to reach the end of the maze and both a score and time elapsed are recorded.
+Once the program is up and running, the game is very straight-forward. The user can use either the arrow keys or WASD to move the dog through the maze, collecting bones along the way while avoiding shampoo bottles. To change the POV, the user can press 'o'. To exit the program, the user can press 'Esc'. The goal is to reach the end of the maze and both a score and time elapsed are recorded.
 
 
 **Known Bugs**
 
-One known bug is that when registering key strokes, the game is 1 stroke behind. Also, the camera does not have collision checking and will go through walls. 
+One known bug is that when registering key strokes, the game is 1 stroke behind. Also, the camera does not have collision checking and will tend to go through walls. 
 
 
 
