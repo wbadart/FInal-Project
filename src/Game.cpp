@@ -99,8 +99,8 @@ void Game::init_models(void){
 }
 
 void Game::gen_objects(void){
-    int num_objs = rand() % 6 + 2, i = 0, j = 0;
-    for(i = 0; i < num_objs * 2; i++){
+    int num_objs = rand() % 6 + 2;
+    for(int i = 0; i < num_objs * 2; i++){
         objs.push_back(new Bone);
         objs[i]->load("models/bone.egg", &framework, window);
         objs[i]->set_scale(0.35);
