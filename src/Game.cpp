@@ -82,13 +82,11 @@ void Game::init_models(void){
     // Load model, aka the dog
     pc = load_model("models/dog.egg");
     pc.set_scale(0.5);
+    pc.set_pos(12.5, -5, 0);
+    pc.set_hpr(270,0,0);
     pc.reparent_to(window->get_render());
     window->load_model(pc, "models/dog-Anim0.egg");
 
-//    while(framework.do_frame(current_thread))
-//    {
-	//check collisions
-//    }
     camera.reparent_to(pc);
     camera.set_pos(18, 1, 8);
     camera.look_at(0, 0, 0);
@@ -125,12 +123,14 @@ void Game::run(void){
     //Collision Detection
     CollisionTraverser* collTrav = new CollisionTraverser();
     CollisionHandlerPusher pusher;
+    //Dog Collision
     CollisionNode* cNode = new CollisionNode("cNode");
-    cNode->add_solid(new CollisionSphere(0,0,0,1.0));
-    cNode->add_solid(new CollisionSphere(5,0,0,1.0));
+    cNode->add_solid(new CollisionSphere(0,0,0,1.0)); //front of dog
+    cNode->add_solid(new CollisionSphere(5,0,0,1.0)); //back of dog
     //CollisionTube(LPoint3f(5, 0, 0), LPoint3f(-1, 0, 0), 2.0));
     NodePath pcC = pc.attach_new_node(cNode);
     pcC.show();
+    //Maze Wall Collision (we labeled maze walls a-p)
     cNode = new CollisionNode("cNode");
     cNode->add_solid(new CollisionBox(LPoint3f(0, 2.9, 0), 3, 0.05 , 1.0)); //a
     cNode->add_solid(new CollisionBox(LPoint3f(2.95, 0, 0), 0.05, 3 , 1.0)); //b
@@ -142,15 +142,18 @@ void Game::run(void){
     cNode->add_solid(new CollisionBox(LPoint3f(1.0, -0.55, 0), 0.06, 1.5 , 1.0)); //i
     cNode->add_solid(new CollisionBox(LPoint3f(-0.45, 0.95, 0), 0.5, 0.06 , 1.0)); //j
     cNode->add_solid(new CollisionBox(LPoint3f(0.0, 0.0, 0), 0.06, 1.0 , 1.0)); //k
-    cNode->add_solid(new CollisionBox(LPoint3f(-2.5, 0, 0), 0.5, 0.06 , 1.0)); //h
+    cNode->add_solid(new CollisionBox(LPoint3f(-2.5, 0, 0), 0.5, 0.07 , 1.0)); //h
     cNode->add_solid(new CollisionBox(LPoint3f(0, -1.0, 0), 2.1, 0.06 , 1.0)); //l
     cNode->add_solid(new CollisionBox(LPoint3f(-2.0, -1.5, 0), 0.06, 0.5, 1.0)); //m
     cNode->add_solid(new CollisionBox(LPoint3f(0, -2.0, 0), 1.1, 0.06 , 1.0)); //n
     cNode->add_solid(new CollisionBox(LPoint3f(-1.0, -2.5, 0), 0.06, 0.5, 1.0)); //o    
     cNode->add_solid(new CollisionBox(LPoint3f(2.0, -2.5, 0), 0.06, 0.5, 1.0)); //p
-
     NodePath mazeC = maze->node.attach_new_node(cNode);
-    mazeC.show();
+    //mazeC.show();
+    cNode = new CollisionNode("cNode");
+    cNode->add_solid(new CollisionSphere(-3,-0.5,0,0.5)); //end sphere
+    NodePath endC = maze->node.attach_new_node(cNode);
+    endC.show();
     pusher.add_collider(pcC, pc);
     collTrav->add_collider(pcC, &pusher);
     //Thread *current_thread = Thread::get_current_thread();
