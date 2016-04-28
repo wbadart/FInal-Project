@@ -249,6 +249,8 @@ void Game::init_keybindings(void){
 	framework.define_key("q", "exit", esc, 0);
 
     framework.define_key("o", "toggle cam", toggle_cam, 0);
+
+	framework.define_key("t", "end Game", endGame, 0);
 }
 
 // Cycle through OTS->bird's eye->FP
@@ -354,18 +356,5 @@ void Game::esc(const Event* theEvent, void* data)
     exit(0);
 }
 
-// end game
-void Game::endGame() {
 
-    pc.look_at(camera);
-   
-    PT(TextNode) endGameText = new TextNode("endGame");
-    NodePath endGameText_node;
-    std::string endG = "Game Over";
-    endGameText->set_text(endG);
-    endGameText_node = window->get_aspect_2d().attach_new_node(endGameText);
-    endGameText_node.set_pos(0, 0, 0);
-    endGameText_node.set_scale(0.5);
-
-}
 
