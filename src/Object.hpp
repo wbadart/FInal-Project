@@ -41,6 +41,8 @@ class Object {
 		int points;
         std::string path;
         NodePath node;
+        Texture *texture;
+        TextureStage *stage;
 };
 #endif
 
