@@ -10,12 +10,8 @@ class Object;
 class Bone: public Object {
 
 	public:
-		Bone();		//constructor
-		~Bone();	//deconstructor	
-
         void load(std::string p, PandaFramework *f,
                 WindowFramework *w);
-
 	private:
         
 

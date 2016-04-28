@@ -2,14 +2,6 @@
 
 #include "Bone.hpp"
 
-Bone::Bone(){
-
-}
-
-Bone::~Bone() {
-
-}
-
 void Bone::load(std::string p, PandaFramework *f, WindowFramework *w){
     node = w->load_model(f->get_models(), p.c_str());
     node.reparent_to(w->get_render());

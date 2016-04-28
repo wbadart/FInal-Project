@@ -1,14 +1,9 @@
 //implementation of Shampoo class
 
-#include "Object.h"
-#include "Shampoo.h"
+#include "Shampoo.hpp"
 
-Shampoo::Shampoo(): Object(-10) {
-
-
-}
-
-Shampoo::~Shampoo(){
-
-
+void Shampoo::load(std::string p, PandaFramework *f, WindowFramework *w){
+    node = w->load_model(f->get_models(), p.c_str());
+    node.reparent_to(w->get_render());
+    load_tex("models/tex/shampoo.png");
 }
