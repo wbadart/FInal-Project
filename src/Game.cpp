@@ -165,9 +165,11 @@ void Game::run(void){
     CollisionNode* cNode = new CollisionNode("cNode");
     cNode->add_solid(new CollisionSphere(0,0,0,1.0)); //front of dog
     cNode->add_solid(new CollisionSphere(5,0,0,1.0)); //back of dog
+    //we ultimately decided to have camera go through walls instead of always having it get stuck    
+    //cNode->add_solid(new CollisionSphere(20,0,7,1.5));//camera
     //CollisionTube(LPoint3f(5, 0, 0), LPoint3f(-1, 0, 0), 2.0));
     NodePath pcC = pc.attach_new_node(cNode);
-    pcC.show();
+    //pcC.show();  //shows actual collision objects, useful for positioning and debugging
     //Maze Wall Collision (we labeled maze walls a-p)
     cNode = new CollisionNode("cNode");
     cNode->add_solid(new CollisionBox(LPoint3f(0, 2.9, 0), 3, 0.05 , 1.0)); //a
@@ -191,7 +193,7 @@ void Game::run(void){
     cNode = new CollisionNode("cNode");
     cNode->add_solid(new CollisionSphere(-3,-0.5,0,0.5)); //end sphere
     NodePath endC = maze->node.attach_new_node(cNode);
-    endC.show();
+    endC.show();  //left this object showing so that user knows they have reached the end
     pusher.add_collider(pcC, pc);
     collTrav->add_collider(pcC, &pusher);
     //Thread *current_thread = Thread::get_current_thread();
@@ -223,9 +225,9 @@ NodePath Game::load_model(std::string model_name){
         return NodePath();
 }
 
-//keyboard detection for game controls: 4 arrow keys and esc
+//keyboard detection for game controls: 4 arrow keys, POV toggle and esc
 void Game::init_keybindings(void){
-	framework.define_key("arrow_up-repeat", "move forward", move_forward, 0);
+    framework.define_key("arrow_up-repeat", "move forward", move_forward, 0);
     framework.define_key("arrow_up", "move forward", move_forward, 0);
     framework.define_key("w-repeat", "move forward", move_forward, 0);
     framework.define_key("w", "move forward", move_forward, 0);
@@ -267,7 +269,7 @@ void Game::set_POV(int pov_id){
             camera.set_p(0);
             break;
         case 1: // Bird's eye
-            camera.set_pos(10, 1, 300);
+            camera.set_pos(10, 1, 35);
             camera.look_at(0, 0, 0);
             break;
         case 2: // FP
