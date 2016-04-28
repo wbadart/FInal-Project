@@ -202,8 +202,9 @@ void Game::run(void){
         text_node.set_pos(0.95, 0, 0.9);
         text_node.set_scale(0.05);
 
-        // Check collisions
+        // Check collisions, reset camera
         collTrav->traverse(window->get_render());
+        set_POV(OTS_enabled);
     }
 }
 
