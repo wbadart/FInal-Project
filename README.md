@@ -66,7 +66,7 @@ For the ease of the both the programmer and the user, the program is compiled wi
 
 **User Manual**
 
-Once the program is up and running, the game is very straight-forward. The user can use either the arrow keys or WASD to move the dog through the maze, collecting bones along the way while avoiding shampoo bottles. To change the POV, the user can press 'o'. To exit the program, the user can press 'Esc'. The goal is to reach the end of the maze and both a score and time elapsed are recorded.
+Once the program is up and running, the game is very straight-forward. The user can use either the arrow keys or WASD to move the dog through the maze, collecting bones along the way while avoiding shampoo bottles. To change the POV, the user can press 'o'. To exit the program, the user can press 'Esc'. Both a score and time elapsed are recorded. The goal is to reach the end of the maze.
 
 
 **Known Bugs**
