@@ -35,7 +35,7 @@ Interestingly, our Object class and Game class are intertwined in the sense that
 
 Within the Game class, there is also a vector of Object pointers, this is important for the actual implementation of objects.
 
-The objects are dispersed randomly throughout the game. This was done by adding a function in Game that used the rand function to generate a number between 2 and 8, that determines the number of objects that should be generated. Then a for loop (for both Bone and Shampoo), allocates a new Bone by pushing the Bone class back in the vector of pointers declared in Game. The position/angle are randomized (excluding z - up and down). Then the loop iterator is incremented. The same process is then done for Shampoo within the for loop (same loop that contains Bone creation).
+The objects are dispersed randomly throughout the game. This was done by adding a function in Game that used the rand function to generate a number between 2 and 8, that determines the number of objects that should be generated. Then a for loop (for both Bone and Shampoo), allocates a new Bone by pushing the Bone class back in the vector of pointers declared in Game. The position/angle are randomized (excluding z - up and down), then the loop iterator is incremented. The same process is then done for Shampoo within the for loop (same loop that contains Bone creation).
 
 
 **Libraries/Header files** :  *within /built/lib and /built/include*
