@@ -9,6 +9,8 @@ Dan Wilborn
 
 *Project log can be found at*: https://docs.google.com/spreadsheets/d/1GxqNj7XqEiN0hS3hg-xIgdq8dVjda9YKXLhBy6NUcfU/edit#gid=0
 
+*Team meeting descripts (more detail)*: https://docs.google.com/document/d/16bwAEJMZ0qg0G66HvHHsSY0q0C9MV2ztJ7Bh--Ex8tg/edit
+
 
 *Git repository can be found at*: https://github.com/wbadart/Final-Project
 
@@ -32,6 +34,10 @@ The base class, Game, contains much of the overarching panda3D code. This includ
 From the base class, we then created an Object class. This is the base class from which all collectable objects would come from. The Object class includes a load function, a set scale function, a set position function, and a function (set_p) for setting the angle of the object. There is also a get points function and set points function. The data members include the points, the path, and the node. 
 
 Interestingly, our Object class and Game class are intertwined in the sense that the Game class is referenced in Object. This allows us to call two of the member functions located in Game from within the Object class. Overall, Object is used within Game in a composition method. We use pointers to Object because Game is referenced in Object, so Game must be created for Object to exist. In a similar way, Object must be created for Game to exist. By using pointers, we do not have to allocate a specific amount of memory for the Object class within Game.
+
+Within the Game class, there is also a vector of Object pointers, this is important for the actual implementation of objects.
+
+The objects are dispersed randomly throughout the game. This was done by adding a function in Game that used the rand function to generate a number between 2 and 8, that determines the number of objects that should be generated. Then a for loop (for both Bone and Shampoo), allocates a new Bone by pushing the Bone class back in the vector of pointers declared in Game. The position/angle are randomized (excluding z - up and down), then the loop iterator is incremented. The same process is then done for Shampoo within the for loop (same loop that contains Bone creation).
 
 
 **Libraries/Header files** :  *within /built/lib and /built/include*
@@ -60,14 +66,12 @@ For the ease of the both the programmer and the user, the program is compiled wi
 
 **User Manual**
 
-Once the program is up and running, the game is very straight-forward. The user can use either the arrow keys or WASD to move the dog through the maze, collecting bones/chew toys along the way while avoiding vacuums/shampoo. To change the POV, the user can press 'o'. To exit the program, the user can press 'Esc'. The goal is to reach the end of the maze and both a score and time elapsed are recorded.
+Once the program is up and running, the game is very straight-forward. The user can use either the arrow keys or WASD to move the dog through the maze, collecting bones along the way while avoiding shampoo bottles. To change the POV, the user can press 'o'. To exit the program, the user can press 'Esc'. Both a score and time elapsed are recorded. The goal is to reach the end of the maze.
 
 
 **Known Bugs**
 
-
-
-**Other**
+One known bug is that when registering key strokes, the game is 1 stroke behind. Also, the camera does not have collision checking and will tend to go through walls. 
 
 
 
