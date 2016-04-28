@@ -357,13 +357,15 @@ void Game::esc(const Event* theEvent, void* data)
 // end game
 void Game::endGame() {
 
+    pc.look_at(camera);
+   
     PT(TextNode) endGameText = new TextNode("endGame");
     NodePath endGameText_node;
     std::string endG = "Game Over";
-    text->set_text(endG);
-    text_node = window->get_aspect_2d().attach_new_node(endGameText);
-    text_node.set_pos(0, 0, 0);
-    text_node.set_scale(0.5);
+    endGameText->set_text(endG);
+    endGameText_node = window->get_aspect_2d().attach_new_node(endGameText);
+    endGameText_node.set_pos(0, 0, 0);
+    endGameText_node.set_scale(0.5);
 
 }
 
