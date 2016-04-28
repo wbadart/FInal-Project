@@ -33,6 +33,10 @@ From the base class, we then created an Object class. This is the base class fro
 
 Interestingly, our Object class and Game class are intertwined in the sense that the Game class is referenced in Object. This allows us to call two of the member functions located in Game from within the Object class. Overall, Object is used within Game in a composition method. We use pointers to Object because Game is referenced in Object, so Game must be created for Object to exist. In a similar way, Object must be created for Game to exist. By using pointers, we do not have to allocate a specific amount of memory for the Object class within Game.
 
+Within the Game class, there is also a vector of Object pointers, this is important for the actual implementation of objects.
+
+The objects are dispersed randomly throughout the game. This was done by adding a function in Game that used the rand function to generate a number between 2 and 8, that determines the number of objects that should be generated. Then a for loop (for both Bone and Shampoo), allocates a new Bone by pushing the Bone class back in the vector of pointers declared in Game. The position/angle are randomized (excluding z - up and down), then the loop iterator is incremented. The same process is then done for Shampoo within the for loop (same loop that contains Bone creation).
+
 
 **Libraries/Header files** :  *within /built/lib and /built/include*
 
@@ -65,9 +69,7 @@ Once the program is up and running, the game is very straight-forward. The user 
 
 **Known Bugs**
 
-
-
-**Other**
+One known bug is that when registering key strokes, the game is 1 stroke behind. Also, the camera does not have collision checking and will go through walls. 
 
 
 

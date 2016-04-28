@@ -173,7 +173,16 @@ void Game::run(void){
     cNode->add_solid(new CollisionBox(LPoint3f(-2.0, 1.5, 0), 0.06, 0.5, 1.0)); //e
     cNode->add_solid(new CollisionBox(LPoint3f(0, 2.0, 0), 2, 0.06 , 1.0)); //f
     cNode->add_solid(new CollisionBox(LPoint3f(2.0, 0.6, 0), 0.06, 1.5 , 1.0)); //g
-    cNode->add_solid(new CollisionBox(LPoint3f(0.60, -0.1, 0), 0.5, 0.06 , 1.0)); //h
+    cNode->add_solid(new CollisionBox(LPoint3f(1.0, -0.55, 0), 0.06, 1.5 , 1.0)); //i
+    cNode->add_solid(new CollisionBox(LPoint3f(-0.45, 0.95, 0), 0.5, 0.06 , 1.0)); //j
+    cNode->add_solid(new CollisionBox(LPoint3f(0.0, 0.0, 0), 0.06, 1.0 , 1.0)); //k
+    cNode->add_solid(new CollisionBox(LPoint3f(-2.5, 0, 0), 0.5, 0.06 , 1.0)); //h
+    cNode->add_solid(new CollisionBox(LPoint3f(0, -1.0, 0), 2.1, 0.06 , 1.0)); //l
+    cNode->add_solid(new CollisionBox(LPoint3f(-2.0, -1.5, 0), 0.06, 0.5, 1.0)); //m
+    cNode->add_solid(new CollisionBox(LPoint3f(0, -2.0, 0), 1.1, 0.06 , 1.0)); //n
+    cNode->add_solid(new CollisionBox(LPoint3f(-1.0, -2.5, 0), 0.06, 0.5, 1.0)); //o    
+    cNode->add_solid(new CollisionBox(LPoint3f(2.0, -2.5, 0), 0.06, 0.5, 1.0)); //p
+
     NodePath mazeC = maze->node.attach_new_node(cNode);
     mazeC.show();
     pusher.add_collider(pcC, pc);
