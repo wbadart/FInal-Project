@@ -246,21 +246,27 @@ void Game::init_keybindings(void){
 // Cycle through OTS->bird's eye->FP
 void Game::toggle_cam(const Event* e, void *d){
     std::cout << "Entering POV: " << OTS_enabled << std::endl;
-    switch(OTS_enabled){
-        case 0: // OTS -> bird's eye
-            camera.set_pos(10, 1, 300);
-            camera.look_at(0, 0, 0);
-            break;
-        case 1: // bird's eye -> FP
-            camera.set_pos(2.1, 0, 7.6);
-            camera.set_p(0);
-            break;
-        case 2: // FP -> OTS
+    OTS_enabled = (OTS_enabled + 1) % 3;
+    set_POV(OTS_enabled);
+}
+
+// Set camera position based on given POV id
+void Game::set_POV(int pov_id){
+    switch(pov_id){
+        case 0: // OTS
             camera.set_pos(18, 1, 8);
             camera.look_at(0, 0, 0);
             camera.set_p(0);
+            break;
+        case 1: // Bird's eye
+            camera.set_pos(10, 1, 300);
+            camera.look_at(0, 0, 0);
+            break;
+        case 2: // FP
+            camera.set_pos(2.1, 0, 7.6);
+            camera.set_p(0);
+            break;
     }
-    OTS_enabled = (OTS_enabled + 1) % 3;
 }
 
 // Movement functions for the 4 arrow keys
