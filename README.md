@@ -71,7 +71,7 @@ Once the program is up and running, the game is very straight-forward. The user 
 
 **Known Bugs**
 
-One known bug is that when registering key strokes, the game is 1 stroke behind. Also, the camera does not have collision checking and will tend to go through walls. 
+One known bug is that when registering key strokes, the game is 1 stroke behind. Also, the camera does not have collision checking and will tend to go through walls. Finally, we know that there are data leaks from our program.
 
 
 
