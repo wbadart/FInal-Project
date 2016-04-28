@@ -13,11 +13,13 @@
 
 typedef std::map<std::string, std::vector<float>> confmap;
 class Bone;
+class Shampoo;
 class Game;
 
 class Object {
     friend class Game;
     friend class Bone;
+    friend class Shampoo;
 	public:
 		Object(int points_in = 0,
                std::string path_in = "",
@@ -39,6 +41,8 @@ class Object {
 		int points;
         std::string path;
         NodePath node;
+        Texture *texture;
+        TextureStage *stage;
 };
 #endif
 

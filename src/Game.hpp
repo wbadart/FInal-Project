@@ -31,6 +31,7 @@
 #include "Object.hpp"
 class Object;
 #include "Bone.hpp"
+#include "Shampoo.hpp"
 
 class Game{
 
@@ -55,6 +56,9 @@ class Game{
 
         // Setup keybindings
         void init_keybindings(void);
+
+        // Generates objects in maze
+        void gen_objects(void);
 
         // Wrapper to PandaFramework::main_loop
         void run(void);
@@ -101,6 +105,9 @@ class Game{
         std::vector<Object*> objs;
 
         int curRot;
+
+        // Track current score
+        unsigned int score;
 
         // Track allocated inervals
         static std::vector<CMetaInterval*> intervals;
