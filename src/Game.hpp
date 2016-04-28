@@ -84,6 +84,8 @@ class Game{
         static void toggle_cam(const Event*, void*);
         static void set_POV(int pov_id);
 
+	void endGame();
+
     private:
         
         // Tracks the current POV
